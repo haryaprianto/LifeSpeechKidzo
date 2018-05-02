@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Life Speech Kidzo</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+
+    <string name="regtvTitleEmail">Email:</string>
+    <string name="regtvTitlePassword">Password:</string>
+    <string name="regtvTitleName">Name:</string>
+    <string name="register">Register</string>
+    <string name="regname">Enter Your Full Name</string>
+    <string name="refemail">Example@gmail.com</string>
+    <string name="regpwd">Enter Password</string>
+
+    <string name="textNoun">Noun</string>
+    <string name="textviewPreposition">Preposition</string>
+    <string name="textVerb">Verb</string>
+    <string name="textPronouns">Pronouns</string>
+
+
+</resources>
