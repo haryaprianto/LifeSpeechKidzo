@@ -3,14 +3,28 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
-
     <string name="regtvTitleEmail">Email:</string>
+    <string name="login">Login</string>
     <string name="regtvTitlePassword">Password:</string>
-    <string name="regtvTitleName">Name:</string>
+    <string name="regtvFirstName">First Name:</string>
+    <string name="regtvLastName">Last Name:</string>
+    <string name="regfirstname">Enter Your First Name</string>
+    <string name="reglastname">Enter Your Last Name</string>
     <string name="register">Register</string>
-    <string name="regname">Enter Your Full Name</string>
     <string name="refemail">Example@gmail.com</string>
     <string name="regpwd">Enter Password</string>
+
+    <string name="contactus">Contact Us</string>
+    <string name="contectdes">We are always delighted to be of service\n to you! Please note out address\n mentioned below for reference.</string>
+    <string name="ouroffice">Our Office</string>
+    <string name="ouraddress"><b>Our Address:</b> \n20 Havelock Road #02-59\nCentral Square\nSingapore 059765</string>
+    <string name="operation"><b>Operation Hour:</b>\n9am-7pm(Monday - Sunday)</string>
+    <string name="phone"><b>Phone: </b>Phone:\n +65 6423 0032</string>
+    <string name="social"><b>Social Network: </b></string>
+
+
+
+
 
     <string name="textNoun">Noun</string>
     <string name="textviewPreposition">Preposition</string>

@@ -14,123 +14,165 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-        <TextView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="casual"
-            android:text="@string/register"
-            android:textAlignment="center"
-            android:textColor="#4b2000"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="casual"
-            android:text="@string/regtvTitleName"
-            android:textColor="#4b2000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/regEtName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:fontFamily="casual"
-            android:hint="@string/regname"
-            android:drawableLeft="@mipmap/ic_launcher_name"
-            android:inputType="textPersonName"
-            android:textColor="#4b2000"
-            android:textColorHint="#4b2000" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="casual"
+                    android:text="@string/register"
+                    android:textAlignment="center"
+                    android:textColor="#4b2000"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="casual"
-            android:text="@string/regtvTitleEmail"
-            android:textColor="#4b2000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="casual"
+                    android:text="@string/regtvFirstName"
+                    android:textColor="#4b2000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/regEtEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:fontFamily="casual"
-            android:hint="@string/refemail"
-            android:inputType="textNoSuggestions"
-            android:drawableLeft="@mipmap/ic_launcher_email"
-            android:textColor="#4b2000"
-            android:textColorHint="#4b2000" />
+                <EditText
+                    android:id="@+id/regEtLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@mipmap/ic_launcher_name"
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/regfirstname"
+                    android:inputType="textPersonName"
+                    android:textColor="#4b2000"
+                    android:textColorHint="#4b2000" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="casual"
-            android:text="@string/regtvTitlePassword"
-            android:textColor="#4b2000"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="@string/regtvTitlePassword" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="casual"
+                    android:text="@string/regtvLastName"
+                    android:textColor="#4b2000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/regEtPwd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:fontFamily="casual"
-            android:hint="@string/regpwd"
-            android:drawableLeft="@mipmap/ic_launcher_password"
-            android:inputType="textNoSuggestions"
-            android:textColor="#4b2000"
-            android:textColorHint="#4b2000" />
+                <EditText
+                    android:id="@+id/regEtFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@mipmap/ic_launcher_name"
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/reglastname"
+                    android:inputType="textPersonName"
+                    android:textColor="#4b2000"
+                    android:textColorHint="#4b2000" />
 
-        <Button
-            android:id="@+id/regSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="casual"
-            android:shadowColor="#4b2000"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="5"
-            android:text="@string/register"
-            android:textColor="#4b2000"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="casual"
+                    android:text="@string/regtvTitleEmail"
+                    android:textColor="#4b2000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/regEtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/refemail"
+                    android:inputType="textNoSuggestions"
+                    android:drawableLeft="@mipmap/ic_launcher_email"
+                    android:textColor="#4b2000"
+                    android:textColorHint="#4b2000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="casual"
+                    android:text="@string/regtvTitlePassword"
+                    android:textColor="#4b2000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="@string/regtvTitlePassword" />
+
+                <EditText
+                    android:id="@+id/regEtPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/regpwd"
+                    android:drawableLeft="@mipmap/ic_launcher_password"
+                    android:inputType="textNoSuggestions"
+                    android:textColor="#4b2000"
+                    android:textColorHint="#4b2000" />
+
+                <Button
+                    android:id="@+id/btnRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/buttondesign"
+                    android:fontFamily="casual"
+                    android:shadowColor="#4b2000"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"
+                    android:text="@string/register"
+                    android:textColor="#000000"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
 
     </LinearLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/navView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="#FFF2D1"
+        android:background="#F89A06"
         app:menu="@menu/navigation_menu"
         android:layout_gravity="start">
 

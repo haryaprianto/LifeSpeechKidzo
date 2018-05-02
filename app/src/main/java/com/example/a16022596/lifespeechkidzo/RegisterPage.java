@@ -11,26 +11,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class RegisterPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     //sidebar start
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     //sidebar end
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
+        setContentView(R.layout.activity_acc_register);
 
         //sidebar start
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -45,20 +34,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //sidebar end
 
-
-
-
     }
-
-
-
-
-
-
-
-
-
     //sidebar start
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){return true;
@@ -70,27 +48,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_home){
-            Intent mainActivityIntent = new Intent(MainActivity.this, MainActivity.class);
+            Intent mainActivityIntent = new Intent(RegisterPage.this, MainActivity.class);
             startActivity(mainActivityIntent);
-
 
         }else if(id == R.id.nav_Login) {
 
-            Intent mainActivityIntent = new Intent(MainActivity.this, LoginPage.class);
+            Intent mainActivityIntent = new Intent(RegisterPage.this, LoginPage.class);
             startActivity(mainActivityIntent);
         }
 
         else if (id == R.id.nav_CreateAccount){
-            Intent mainActivityIntent = new Intent(MainActivity.this, RegisterPage.class);
+            Intent mainActivityIntent = new Intent(RegisterPage.this, RegisterPage.class);
             startActivity(mainActivityIntent);
 
 
         }
         else if (id == R.id.nav_contact){
 
-            Intent mainActivityIntent = new Intent(MainActivity.this, ContactPage.class);
+            Intent mainActivityIntent = new Intent(RegisterPage.this, ContactPage.class);
             startActivity(mainActivityIntent);
-
 
         }else if(id == R.id.nav_about){
 

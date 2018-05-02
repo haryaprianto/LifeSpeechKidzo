@@ -20,7 +20,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="20dp"
             android:fontFamily="casual"
-            android:text="@string/register"
+            android:text="@string/login"
             android:textAlignment="center"
             android:textColor="#4b2000"
             android:textSize="36sp"
@@ -82,19 +82,20 @@
             android:textColorHint="#4b2000" />
 
         <Button
-            android:id="@+id/buttonLogIn"
+            android:id="@+id/logLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/buttondesign"
             android:fontFamily="casual"
             android:shadowColor="#4b2000"
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="5"
-            android:text="Log In"
-            android:textColor="#4b2000"
+            android:text="@string/login"
+            android:textColor="#000000"
             android:textSize="40sp"
             android:textStyle="bold" />
 
@@ -103,7 +104,7 @@
         android:id="@+id/navView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="#FFF2D1"
+        android:background="#F89A06"
         app:menu="@menu/navigation_menu"
         android:layout_gravity="start">
 

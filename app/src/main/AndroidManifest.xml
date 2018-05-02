@@ -17,8 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".accRegister" />
+        <activity android:name=".RegisterPage" />
         <activity android:name=".LoginPage" />
+        <activity android:name=".ContactPage"></activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBrHPOlRNQynhxw0OynPVpz0GvIxj4ucoE" />
     </application>
 
 </manifest>
