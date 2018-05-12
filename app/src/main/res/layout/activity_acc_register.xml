@@ -48,7 +48,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/regEtLastName"
+                    android:id="@+id/regEtFirstName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -75,7 +75,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/regEtFirstName"
+                    android:id="@+id/regEtLastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
