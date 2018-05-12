@@ -66,7 +66,7 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
 
                     Toast.makeText(getApplicationContext(),
                             "Please wait",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     String url = "https://lifespeechsample3.000webhostapp.com/doRegister.php?firstName="+etFirstname.getText().toString()+"&lastName="+etLastname.getText().toString()+"&email="+etEmail.getText().toString()+"&username="+etLastname.getText().toString()+"&password="+etPassword.getText().toString()+"";
                     AsyncHttpClient client = new AsyncHttpClient();
@@ -95,31 +95,29 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
 
                         @Override
                         public void onSuccess(String response) {
-
-
                             try {
-
                                 JSONObject jsonObj = new JSONObject(response);
-                                //JSONObject Object = jsonObj.getJSONObject("success");
-                                String success = jsonObj.getString("success");
-                                if (success.equals("1")){
+                                JSONObject resultObject = jsonObj.getJSONObject("result");
+                                String username = resultObject.getString("usernamesuccess");
+                                Toast.makeText(getApplicationContext(),
+                                        username,
+                                        Toast.LENGTH_LONG).show();
+                                if (username.equals("1")){
                                     Toast.makeText(getApplicationContext(),
-                                            "Account create successful",
+                                            "Sorry user name has been taken",
                                             Toast.LENGTH_LONG).show();
 
                                 }else{
                                     Toast.makeText(getApplicationContext(),
-                                            "Account create fail",
+                                            "Account create successful please verify your email",
                                             Toast.LENGTH_LONG).show();
+
                                 }
-
-
 
                             } catch (JSONException e) {
 
                                 e.printStackTrace();
                             }
-
                         }
                     });
                 } else {
