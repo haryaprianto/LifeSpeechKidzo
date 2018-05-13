@@ -6,6 +6,7 @@
     <string name="regtvTitleEmail">Email:</string>
     <string name="login">Login</string>
     <string name="regtvTitlePassword">Password:</string>
+    <string name="regtvTitleConfirmPassword">Confirm Password:</string>
     <string name="regtvFirstName">First Name:</string>
     <string name="regtvLastName">Last Name:</string>
     <string name="regfirstname">Enter Your First Name</string>
@@ -13,6 +14,8 @@
     <string name="register">Register</string>
     <string name="refemail">Example@gmail.com</string>
     <string name="regpwd">Enter Password</string>
+    <string name="regtvUserName">Username:</string>
+    <string name="regetUserName">Enter your Username</string>
 
     <string name="contactus">Contact Us</string>
     <string name="contectdes">We are always delighted to be of service\n to you! Please note out address\n mentioned below for reference.</string>
