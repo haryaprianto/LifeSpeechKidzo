@@ -119,8 +119,6 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                                                 Toast.LENGTH_LONG).show();
                                     }
 
-
-
                             } catch (JSONException e) {
 
                                 e.printStackTrace();
@@ -131,7 +129,6 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                     Toast.makeText(getApplicationContext(),
                             "Please complete form!",
                             Toast.LENGTH_LONG).show();
-
                 }
 
             }
