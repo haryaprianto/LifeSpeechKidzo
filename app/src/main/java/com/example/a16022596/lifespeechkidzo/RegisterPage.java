@@ -77,8 +77,15 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
         final String secondpassword = etPassword2.getText().toString().trim();
 
 
+
         if (firstname.isEmpty()) {
             etFirstname.setError("First name is required");
+            etFirstname.requestFocus();
+            return;
+        }
+
+        if (!firstname.matches("^\\S*$")) {
+            etFirstname.setError("Space is not allowed");
             etFirstname.requestFocus();
             return;
         }
@@ -87,8 +94,19 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
             etLastname.requestFocus();
             return;
         }
+
+        if (!lastname.matches("^\\S*$")) {
+            etLastname.setError("Space is not allowed");
+            etLastname.requestFocus();
+            return;
+        }
         if (username.isEmpty()) {
             etUsername.setError("Username is required");
+            etUsername.requestFocus();
+            return;
+        }
+        if (!username.matches("^\\S*$")) {
+            etUsername.setError("Space is not allowed");
             etUsername.requestFocus();
             return;
         }
@@ -104,6 +122,11 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
             etPassword.requestFocus();
             return;
         }
+        if (!firstpassword.matches("^\\S*$")) {
+            etPassword.setError("Space is not allowed");
+            etPassword.requestFocus();
+            return;
+        }
         if (firstpassword.isEmpty()) {
             etPassword.setError("Password is required");
             etPassword.requestFocus();
@@ -115,6 +138,7 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
             etPassword2.requestFocus();
             return;
         }
+
         if (secondpassword.isEmpty()) {
             etPassword2.setError("Password is required");
             etPassword2.requestFocus();
@@ -126,7 +150,8 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
             etPassword2.setError("Password does not match");
             etPassword2.requestFocus();
             return;
-        } else {
+        }
+        else {
 
 
             Toast.makeText(getApplicationContext(),
