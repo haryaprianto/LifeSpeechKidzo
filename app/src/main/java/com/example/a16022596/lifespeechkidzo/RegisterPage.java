@@ -138,7 +138,11 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
             etPassword2.requestFocus();
             return;
         }
-
+        if (secondpassword.matches("^\\S*$")) {
+            etPassword2.setError("Space is not allowed");
+            etPassword2.requestFocus();
+            return;
+        }
         if (secondpassword.isEmpty()) {
             etPassword2.setError("Password is required");
             etPassword2.requestFocus();

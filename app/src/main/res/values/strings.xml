@@ -3,7 +3,7 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
-    <string name="regtvTitleEmail">Email:</string>
+    <string name="regtvTitleEmail">Email</string>
     <string name="login">Login</string>
     <string name="regtvTitlePassword">Password:</string>
     <string name="regtvTitleConfirmPassword">Confirm Password:</string>
@@ -23,7 +23,14 @@
     <string name="ouraddress"><b>Our Address:</b> \n20 Havelock Road #02-59\nCentral Square\nSingapore 059765</string>
     <string name="operation"><b>Operation Hour:</b>\n9am-7pm(Monday - Sunday)</string>
     <string name="phone"><b>Phone: </b>Phone:\n +65 6423 0032</string>
-    <string name="social"><b>Social Network: </b></string>
+    <string name="social"><b>Social Network: </b>
+
+
+
+
+    </string><string name="forgetpwd"><b>Forget Password: </b></string>
+
+
 
 
 
