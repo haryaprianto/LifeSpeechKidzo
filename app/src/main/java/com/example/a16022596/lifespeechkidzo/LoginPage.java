@@ -65,7 +65,7 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                             "Please wait",
                             Toast.LENGTH_SHORT).show();
 
-                    String url = "https://lifespeechsample3.000webhostapp.com/doLogin.php?username="+etUsername.getText().toString()+"&password="+etPassword.getText().toString()+"";
+                    String url = "https://fypdmsd.000webhostapp.com/AdoLoginAndroid.php?username="+etUsername.getText().toString()+"&password="+etPassword.getText().toString()+"";
                     AsyncHttpClient client = new AsyncHttpClient();
                     client.get(url, new AsyncHttpResponseHandler() {
 

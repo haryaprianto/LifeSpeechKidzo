@@ -138,11 +138,7 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
             etPassword2.requestFocus();
             return;
         }
-        if (secondpassword.matches("^\\S*$")) {
-            etPassword2.setError("Space is not allowed");
-            etPassword2.requestFocus();
-            return;
-        }
+
         if (secondpassword.isEmpty()) {
             etPassword2.setError("Password is required");
             etPassword2.requestFocus();
@@ -162,7 +158,7 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
                     "Please wait",
                     Toast.LENGTH_SHORT).show();
 
-            String url = "https://lifespeechsample3.000webhostapp.com/doRegister.php?firstName=" + etFirstname.getText().toString() + "&lastName=" + etLastname.getText().toString() + "&email=" + etEmail.getText().toString() + "&username=" + etLastname.getText().toString() + "&password=" + etPassword.getText().toString() + "&username="+etUsername.getText().toString()+"";
+            String url = "https://fypdmsd.000webhostapp.com/AdoRegisterAndroid.php?firstName=" + etFirstname.getText().toString() + "&lastName=" + etLastname.getText().toString() + "&email=" + etEmail.getText().toString() + "&username=" + etLastname.getText().toString() + "&password=" + etPassword.getText().toString() + "&username="+etUsername.getText().toString()+"";
             AsyncHttpClient client = new AsyncHttpClient();
             client.get(url, new AsyncHttpResponseHandler() {
 
