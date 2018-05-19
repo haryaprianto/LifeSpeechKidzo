@@ -27,7 +27,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBrHPOlRNQynhxw0OynPVpz0GvIxj4ucoE" />
 
-        <activity android:name=".ForgetPasswordPage"></activity>
+        <activity
+            android:name=".ForgetPasswordPage"
+            android:parentActivityName=".LoginPage" />
+        <activity android:name=".ForgetPasswordVerifyPage"></activity>
     </application>
 
 </manifest>

@@ -10,10 +10,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -53,6 +55,14 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
         etPassword = (EditText)findViewById(R.id.editTextLoginPassword);
         btnLogin = (Button)findViewById(R.id.logLogin);
 
+        TextView textViewForgetPassword = (TextView)findViewById(R.id.textViewForgetPassword);
+        textViewForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent login = new Intent(LoginPage.this,ForgetPasswordPage.class);
+                startActivity(login);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
@@ -65,7 +75,8 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                             "Please wait",
                             Toast.LENGTH_SHORT).show();
 
-                    String url = "https://fypdmsd.000webhostapp.com/AdoLoginAndroid.php?username="+etUsername.getText().toString()+"&password="+etPassword.getText().toString()+"";
+                    String url = "https://fypandroiddmsd.000webhostapp.com/AdoLoginAndroid.php?username="+etUsername.getText().toString()+"&password="+etPassword.getText().toString()+"";
+//                    Log.i("ttturl",url);
                     AsyncHttpClient client = new AsyncHttpClient();
                     client.get(url, new AsyncHttpResponseHandler() {
 
@@ -97,12 +108,8 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                                 JSONObject resultObject = jsonObj.getJSONObject("result");
                                 String exist = resultObject.getString("userExist");
                                 String emailverify = resultObject.getString("emailVerify");
-                                Toast.makeText(getApplicationContext(),
-                                        exist,
-                                        Toast.LENGTH_LONG).show();
-                                Toast.makeText(getApplicationContext(),
-                                        emailverify,
-                                        Toast.LENGTH_LONG).show();
+//                                Toast.makeText(getApplicationContext(), exist, Toast.LENGTH_LONG).show();
+//                                Toast.makeText(getApplicationContext(), emailverify, Toast.LENGTH_LONG).show();
                                 if (exist.equals("0")){
                                     Toast.makeText(getApplicationContext(),
                                             "Account does exist",
@@ -117,6 +124,8 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                                         Toast.makeText(getApplicationContext(),
                                                 "Login in successful",
                                                 Toast.LENGTH_LONG).show();
+                                                Intent home = new Intent(LoginPage.this,MainActivity.class);
+                                                startActivity(home);
                                     }
 
                             } catch (JSONException e) {

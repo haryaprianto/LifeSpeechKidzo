@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
@@ -158,7 +159,8 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
                     "Please wait",
                     Toast.LENGTH_SHORT).show();
 
-            String url = "https://fypdmsd.000webhostapp.com/AdoRegisterAndroid.php?firstName=" + etFirstname.getText().toString() + "&lastName=" + etLastname.getText().toString() + "&email=" + etEmail.getText().toString() + "&username=" + etLastname.getText().toString() + "&password=" + etPassword.getText().toString() + "&username="+etUsername.getText().toString()+"";
+            String url = "https://fypandroiddmsd.000webhostapp.com/AdoRegisterAndroid.php?firstName=" + etFirstname.getText().toString() + "&lastName=" + etLastname.getText().toString() + "&email=" + etEmail.getText().toString() + "&username=" + etLastname.getText().toString() + "&password=" + etPassword.getText().toString() + "&username="+etUsername.getText().toString()+"";
+//            Log.i("ttturl",url);
             AsyncHttpClient client = new AsyncHttpClient();
             client.get(url, new AsyncHttpResponseHandler() {
 
@@ -188,19 +190,21 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
                     try {
                         JSONObject jsonObj = new JSONObject(response);
                         JSONObject resultObject = jsonObj.getJSONObject("result");
-                        String username = resultObject.getString("usernamesuccess");
-                        Toast.makeText(getApplicationContext(),
-                                username,
-                                Toast.LENGTH_LONG).show();
+                        String username = resultObject.getString("userExists");
+//                        Toast.makeText(getApplicationContext(),
+//                                username,
+//                                Toast.LENGTH_LONG).show();
                         if (username.equals("1")) {
                             Toast.makeText(getApplicationContext(),
                                     "Sorry user name has been taken",
                                     Toast.LENGTH_LONG).show();
 
                         } else {
-                            Toast.makeText(getApplicationContext(),
+                            Toast.makeText(RegisterPage.this,
                                     "Account create successful please verify your email",
                                     Toast.LENGTH_LONG).show();
+                                    Intent login = new Intent(RegisterPage.this,LoginPage.class);
+                                    startActivity(login);
 
                         }
 

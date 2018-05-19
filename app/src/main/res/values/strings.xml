@@ -3,9 +3,12 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
+    <!--Login-->
     <string name="regtvTitleEmail">Email</string>
     <string name="login">Login</string>
     <string name="regtvTitlePassword">Password:</string>
+
+    <!--Register-->
     <string name="regtvTitleConfirmPassword">Confirm Password:</string>
     <string name="regtvFirstName">First Name:</string>
     <string name="regtvLastName">Last Name:</string>
@@ -17,20 +20,26 @@
     <string name="regtvUserName">Username:</string>
     <string name="regetUserName">Enter your Username</string>
 
+
+    <!--forgert pwd-->
+    <string name="forgetpwd"><b>Forget Password </b></string>
+    <string name="code">Code:</string>
+    <string name="entercode">Enter code receive</string>
+    <string name="verify">Verify Account</string>
+    <string name="changwpwd">Change Password</string>
+    <string name="regnewpwd">Enter New Password</string>
+    <string name="regnewpwdconfirm">Enter New Confirm Password</string>
+
+
+
+
     <string name="contactus">Contact Us</string>
     <string name="contectdes">We are always delighted to be of service\n to you! Please note out address\n mentioned below for reference.</string>
     <string name="ouroffice">Our Office</string>
     <string name="ouraddress"><b>Our Address:</b> \n20 Havelock Road #02-59\nCentral Square\nSingapore 059765</string>
     <string name="operation"><b>Operation Hour:</b>\n9am-7pm(Monday - Sunday)</string>
     <string name="phone"><b>Phone: </b>Phone:\n +65 6423 0032</string>
-    <string name="social"><b>Social Network: </b>
-
-
-
-
-    </string><string name="forgetpwd"><b>Forget Password: </b></string>
-
-
+    <string name="social"><b>Social Network: </b></string>
 
 
 
