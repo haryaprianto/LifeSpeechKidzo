@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -16,33 +15,33 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ForgetPasswordPage extends AppCompatActivity {
-
+public class ForgetPasswordChangePasswordPage extends AppCompatActivity {
+    private Button changepwdBtn;
+    private EditText editTextChangpw1, editTextChangpw2;
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forget_password_page);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.activity_forget_password_change_password_page);
+        changepwdBtn = (Button)findViewById(R.id.changepwdbtn);
+        editTextChangpw1 = (EditText)findViewById(R.id.editTextChangpw1);
+        editTextChangpw2 = (EditText)findViewById(R.id.editTextChangpw2);
+        Intent intent = getIntent();
+        token = intent.getStringExtra("token");
+        Log.i("ttttoken",token);
 
-        Button buttonChangepwrd = (Button)findViewById(R.id.changepwd);
-        final EditText changeemail = (EditText)findViewById(R.id.editTextCPEmail);
-
-
-
-
-
-        buttonChangepwrd.setOnClickListener(new View.OnClickListener() {
-
+        changepwdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View view) {
+                check();
 
-                if (!changeemail.getText().toString().equals("")) {
+
 
                     Toast.makeText(getApplicationContext(),
                             "Please wait",
                             Toast.LENGTH_SHORT).show();
 
-                    String url = "https://fypandroiddmsd.000webhostapp.com/AdoForgetPassword.php?email="+changeemail.getText().toString()+"";
+                    String url = "https://fypandroiddmsd.000webhostapp.com/AdoForgetPassword2.php?newpassword="+editTextChangpw1.getText().toString()+"&token="+token;
 //                    Log.i("ttturl",url);
                     AsyncHttpClient client = new AsyncHttpClient();
                     client.get(url, new AsyncHttpResponseHandler() {
@@ -73,26 +72,18 @@ public class ForgetPasswordPage extends AppCompatActivity {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
                                 JSONObject resultObject = jsonObj.getJSONObject("result");
-                                String exist = resultObject.getString("userExists");
-                                String verify = resultObject.getString("userVerify");
-                                String emailsend = resultObject.getString("EmailSuccess");
-//                                Toast.makeText(getApplicationContext(), exist, Toast.LENGTH_LONG).show();
-//                                Toast.makeText(getApplicationContext(), emailverify, Toast.LENGTH_LONG).show();
-
-                                if (exist.equals("0")){
+                                String passwordChange = resultObject.getString("passwordChange");
+                                Toast.makeText(getApplicationContext(), passwordChange, Toast.LENGTH_LONG).show();
+                                if (passwordChange.equals("0")){
                                     Toast.makeText(getApplicationContext(),
-                                            "Account does exist",
-                                            Toast.LENGTH_LONG).show();
-
-                                }else if(verify.equals("0")){
-                                    Toast.makeText(getApplicationContext(),
-                                            "Please verify your account before changing your password",
+                                            "Invalid Password",
                                             Toast.LENGTH_LONG).show();
 
                                 }else{
-//                                    Log.i("ttt","successfully");
-                                    Toast.makeText(getApplicationContext(), "Please check your email to change your password", Toast.LENGTH_LONG).show();
-                                    Intent home = new Intent(ForgetPasswordPage.this,ForgetPasswordVerifyPage.class);
+                                    Toast.makeText(getApplicationContext(),
+                                            "Password Change Successful",
+                                            Toast.LENGTH_LONG).show();
+                                    Intent home = new Intent(ForgetPasswordChangePasswordPage.this,LoginPage.class);
                                     startActivity(home);
                                 }
 
@@ -102,14 +93,42 @@ public class ForgetPasswordPage extends AppCompatActivity {
                             }
                         }
                     });
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "Please complete form!",
-                            Toast.LENGTH_LONG).show();
                 }
 
-            }
+
+
         });
+    }
+    private void check() {
+
+        final String firstpassword = editTextChangpw1.getText().toString().trim();
+        final String secondpassword = editTextChangpw2.getText().toString().trim();
+
+
+        if (firstpassword.isEmpty()) {
+            editTextChangpw1.setError("Password is required");
+            editTextChangpw1.requestFocus();
+            return;
+        }
+
+        if (firstpassword.length() < 8) {
+            editTextChangpw2.setError("Minimum length of password should be 8");
+            editTextChangpw2.requestFocus();
+            return;
+        }
+
+        if (secondpassword.isEmpty()) {
+            editTextChangpw2.setError("Password is required");
+            editTextChangpw2.requestFocus();
+            return;
+        }
+        if (!firstpassword.equals(secondpassword)) {
+            editTextChangpw1.setError("Password does not match");
+            editTextChangpw1.requestFocus();
+            return;
+        }
+
 
     }
+
 }

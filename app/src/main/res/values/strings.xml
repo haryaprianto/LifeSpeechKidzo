@@ -31,8 +31,6 @@
     <string name="regnewpwdconfirm">Enter New Confirm Password</string>
 
 
-
-
     <string name="contactus">Contact Us</string>
     <string name="contectdes">We are always delighted to be of service\n to you! Please note out address\n mentioned below for reference.</string>
     <string name="ouroffice">Our Office</string>
@@ -40,8 +38,6 @@
     <string name="operation"><b>Operation Hour:</b>\n9am-7pm(Monday - Sunday)</string>
     <string name="phone"><b>Phone: </b>Phone:\n +65 6423 0032</string>
     <string name="social"><b>Social Network: </b></string>
-
-
 
 
     <!--<string name="textNoun">Noun</string>-->

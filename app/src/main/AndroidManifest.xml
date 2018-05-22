@@ -30,7 +30,9 @@
         <activity
             android:name=".ForgetPasswordPage"
             android:parentActivityName=".LoginPage" />
-        <activity android:name=".ForgetPasswordVerifyPage"></activity>
+        <activity android:name=".ForgetPasswordVerifyPage" />
+        <activity android:name=".ForgetPasswordChangePassword" />
+        <activity android:name=".ForgetPasswordChangePasswordPage"></activity>
     </application>
 
 </manifest>
