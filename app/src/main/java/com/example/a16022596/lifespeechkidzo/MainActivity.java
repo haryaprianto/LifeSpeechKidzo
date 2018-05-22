@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,10 +31,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle mToggle;
     //sidebar end
     TextView tvNouns,tvPreposition,tvConcepts,tvPronouns,tvVerb;
-    Button btnTest;
-    ArrayList<Category>a;
-
-
+    CardView cvNouns;
+    CardView cvPreposition;
+    CardView cvConcepts;
+    CardView cvPronouns;
+    CardView cvVerb;
+    int id ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +47,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //sidebar start
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         tvNouns = (TextView)findViewById(R.id.textViewNouns);
-        tvConcepts = (TextView)findViewById(R.id.textViewConcepts);
         tvPronouns = (TextView)findViewById(R.id.textViewPronouns);
-        tvVerb = (TextView)findViewById(R.id.textViewVerb);
         tvPreposition = (TextView)findViewById(R.id.textViewPreposition);
+
+
+
+        cvNouns = (CardView)findViewById(R.id.cardViewViewNouns);
+        cvConcepts = (CardView)findViewById(R.id.cardViewConcepts);
+        cvPreposition = (CardView)findViewById(R.id.cardViewPreposition);
+        cvPronouns = (CardView)findViewById(R.id.cardViewViewPronouns);
+        cvVerb = (CardView)findViewById(R.id.cardViewVerb);
 
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -59,10 +68,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setItemTextColor(null);
         navigationView.setItemTextAppearance(R.style.MenuTextStyle);
 
-
         retrieve();
+        cvNouns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = 1;
+                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                i.putExtra("id", id);
+                startActivity(i);
+            }
+        });
+        cvConcepts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = 5;
+                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                i.putExtra("id", id);
+                startActivity(i);
+            }
+        });
+        cvPronouns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = 3;
+                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                i.putExtra("id", id);
+                startActivity(i);
+            }
+        });
+        cvPreposition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = 2;
+                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                i.putExtra("id", id);
+                startActivity(i);
+            }
+        });
+        cvVerb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = 4;
+                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                i.putExtra("id", id);
+                startActivity(i);
+            }
+        });
     }
-
 
     //sidebar start
     @Override
@@ -142,21 +194,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             String name = (String) moduleObj.get("category_name");
                             String iString = String.valueOf(i);
                             strName += name ;
-                        }
-                        if (strName.equals("Preposition")){
-                            tvPreposition.setText(strName);
-                        }
-                        else if (strName.equals("Nouns")){
-                            tvNouns.setText(strName);
-                        }
-                        else if (strName.equals("Concepts")){
-                            tvConcepts.setText(strName);
-                        }
-                        else if (strName.equals("Pronouns")){
-                            tvPronouns.setText(strName);
-                        }
-                        else if (strName.equals("Verbs")){
-                            tvVerb.setText(strName);
                         }
 
                     } catch (JSONException e) {

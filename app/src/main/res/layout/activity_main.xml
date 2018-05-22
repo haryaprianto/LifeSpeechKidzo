@@ -57,6 +57,7 @@
                         android:id="@+id/textViewNouns"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/textviewPronouns"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="16dp"
@@ -98,6 +99,7 @@
                         android:id="@+id/textViewPronouns"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/textviewPronouns"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="16dp"
@@ -137,6 +139,7 @@
                         android:id="@+id/textViewPreposition"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Prepositions"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
@@ -173,9 +176,9 @@
                     />
 
                     <TextView
-                        android:id="@+id/textViewVerb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/textVerb"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
@@ -212,9 +215,9 @@
                     />
 
                     <TextView
-                        android:id="@+id/textViewConcepts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/textConcepts"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"

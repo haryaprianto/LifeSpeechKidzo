@@ -31,8 +31,7 @@
             android:name=".ForgetPasswordPage"
             android:parentActivityName=".LoginPage" />
         <activity android:name=".ForgetPasswordVerifyPage" />
-        <activity android:name=".ForgetPasswordChangePassword" />
-        <activity android:name=".ForgetPasswordChangePasswordPage"></activity>
+        <activity android:name=".showSubsCategory"></activity>
     </application>
 
 </manifest>

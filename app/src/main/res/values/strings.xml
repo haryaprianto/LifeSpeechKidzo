@@ -40,10 +40,10 @@
     <string name="social"><b>Social Network: </b></string>
 
 
-    <!--<string name="textNoun">Noun</string>-->
-    <!--<string name="textviewPronouns">Pronouns</string>-->
-    <!--<string name="textviewPreposition">Preposition</string>-->
-    <!--<string name="textVerb">Verb</string>-->
-    <!--<string name="textConcepts">Concepts</string>-->
+    <string name="textNoun">Noun</string>
+    <string name="textviewPronouns">Pronouns</string>
+    <string name="textviewPreposition">Preposition</string>
+    <string name="textVerb">Verb</string>
+    <string name="textConcepts">Concepts</string>
 
 </resources>
