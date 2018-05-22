@@ -23,6 +23,8 @@ public class ForgetPasswordChangePasswordPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password_change_password_page);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         changepwdBtn = (Button)findViewById(R.id.changepwdbtn);
         editTextChangpw1 = (EditText)findViewById(R.id.editTextChangpw1);
         editTextChangpw2 = (EditText)findViewById(R.id.editTextChangpw2);
