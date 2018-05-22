@@ -86,7 +86,6 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                                     "Please connect to internet and try again",
                                     Toast.LENGTH_LONG).show();
 
-
                         }
 
                         @Override

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 id = 1;
-                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                Intent i = new Intent(MainActivity.this,showSubsCat.class);
                 i.putExtra("id", id);
                 startActivity(i);
             }
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 id = 5;
-                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                Intent i = new Intent(MainActivity.this,showSubsCat.class);
                 i.putExtra("id", id);
                 startActivity(i);
             }
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 id = 3;
-                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                Intent i = new Intent(MainActivity.this,showSubsCat.class);
                 i.putExtra("id", id);
                 startActivity(i);
             }
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 id = 2;
-                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                Intent i = new Intent(MainActivity.this,showSubsCat.class);
                 i.putExtra("id", id);
                 startActivity(i);
             }
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 id = 4;
-                Intent i = new Intent(MainActivity.this,showSubsCategory.class);
+                Intent i = new Intent(MainActivity.this,showSubsCat.class);
                 i.putExtra("id", id);
                 startActivity(i);
             }
