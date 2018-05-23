@@ -1,6 +1,7 @@
 package com.example.a16022596.lifespeechkidzo;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,9 +42,11 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
 
         Category currentCategory = category.get(position);
         tvCategory.setText(currentCategory.getName());
-        String url="https://fypdmsd.000webhostapp.com/images/adventureCurious.jpg";
-        Picasso.get().load(url).into(imgCategory);
-
+        String url = currentCategory.getLinkImage();
+        Log.i("info",url);
+        if (!url.isEmpty()){
+            Picasso.get().load(url).resize(100,50).into(imgCategory);
+        }
         return rowView;
     }
 }

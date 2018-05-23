@@ -157,20 +157,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lvCategory.setAdapter(aa);
     }
 
-
     public ArrayList<String> CategoryObjectJSON(String response){
         ArrayList<String>CategoryNameList = new ArrayList<String>();
         categoriesList = new ArrayList<Category>();
         try{
             JSONArray jsonArray = new JSONArray(response);
-
+            String categoryImageUrl ;
             String category;
             int categoryId ;
             for (int i= 0;i<jsonArray.length();i++){
                 category = jsonArray.getJSONObject(i).getString("category_name");
                 categoryId = jsonArray.getJSONObject(i).getInt("category_id");
+                categoryImageUrl = jsonArray.getJSONObject(i).getString("image");
                 CategoryNameList.add(category);
-                categoriesList.add(new Category(category,categoryId));
+                categoriesList.add(new Category(category,categoryId,categoryImageUrl));
                 Log.i("info", String.valueOf(category));
             }
         }catch (Exception e){

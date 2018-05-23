@@ -8,7 +8,9 @@
     <ImageView
         android:id="@+id/imageViewCategory"
         android:layout_width="match_parent"
-        android:layout_height="101dp"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="1000dp"
         app:srcCompat="@android:drawable/btn_star_big_on" />
 
     <TextView
