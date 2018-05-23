@@ -27,10 +27,9 @@ public class showSubsCat extends AppCompatActivity {
     }
     private void retrieveSubsCategory(){
         Intent IDRecieve = getIntent();
-        int ID = IDRecieve.getIntExtra("id", 0);
-        String strId = String.valueOf(ID);
+        String catId = IDRecieve.getStringExtra("catId");
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = "https://fypandroiddmsd.000webhostapp.com/getSubCategoriesByCategory.php?category_id=" + strId + "";
+        String url = "https://fypandroiddmsd.000webhostapp.com/getSubCategoriesByCategory.php?category_id=" + catId + "";
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onFailure(Throwable arg0, String arg1) {
@@ -76,7 +75,6 @@ public class showSubsCat extends AppCompatActivity {
             for (int i= 0;i<jsonArray.length();i++){
                 subsCategory = jsonArray.getJSONObject(i).getString("subcategory_name");
                 subsCategoryNameList.add(subsCategory);
-
                 Log.i("info", String.valueOf(subsCategory));
             }
         }catch (Exception e){

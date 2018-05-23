@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(MainActivity.this, showSubsCat.class);
                 Category selectedCategory = categoriesList.get(pos);
                 int categoryId = selectedCategory.getId();
-                intent.putExtra("catId", categoryId);
+                String strCategoryId = String.valueOf(categoryId);
+                intent.putExtra("catId", strCategoryId);
                 startActivity(intent);
             }
         });
