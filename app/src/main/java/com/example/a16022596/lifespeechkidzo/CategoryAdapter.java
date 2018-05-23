@@ -45,7 +45,10 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         String url = currentCategory.getLinkImage();
         Log.i("info",url);
         if (!url.isEmpty()){
-            Picasso.get().load(url).resize(100,50).into(imgCategory);
+//            Picasso.get().load(url).resize(100,50).into(imgCategory);
+
+            Picasso.get().load(url).fit().centerCrop().into(imgCategory);
+
         }
         return rowView;
     }

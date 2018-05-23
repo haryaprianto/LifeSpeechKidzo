@@ -1,9 +1,11 @@
 package com.example.a16022596.lifespeechkidzo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -11,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -30,11 +33,13 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
     private ActionBarDrawerToggle mToggle;
     private EditText etUsername,etPassword;
     private Button btnLogin;
+
     //sidebar end
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
         //sidebar start
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -107,22 +112,29 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                                 JSONObject resultObject = jsonObj.getJSONObject("result");
                                 String exist = resultObject.getString("userExist");
                                 String emailverify = resultObject.getString("emailVerify");
-//                                Toast.makeText(getApplicationContext(), exist, Toast.LENGTH_LONG).show();
+
+                                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LoginPage.this);
+                                boolean Islogin;
+
+//                                  Toast.makeText(getApplicationContext(), exist, Toast.LENGTH_LONG).show();
 //                                Toast.makeText(getApplicationContext(), emailverify, Toast.LENGTH_LONG).show();
                                 if (exist.equals("0")){
                                     Toast.makeText(getApplicationContext(),
                                             "Account does exist",
                                             Toast.LENGTH_LONG).show();
+                                            Islogin = prefs.getBoolean("Islogin", false);
 
                                 }else if(emailverify.equals("0")){
                                         Toast.makeText(getApplicationContext(),
-                                                "Please verify your email",
-                                                Toast.LENGTH_LONG).show();
+                                                "Please verify your email",Toast.LENGTH_LONG).show();
+                                                Islogin = prefs.getBoolean("Islogin", false);
+
 
                                 }else{
                                         Toast.makeText(getApplicationContext(),
                                                 "Login in successful",
                                                 Toast.LENGTH_LONG).show();
+                                                prefs.edit().putBoolean("Islogin", true).commit();
                                                 Intent home = new Intent(LoginPage.this,MainActivity.class);
                                                 startActivity(home);
                                     }
@@ -149,6 +161,23 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
 
     }
     //sidebar start
+
+
+
+//    public void checklogin(boolean Islogin){
+//        if(Islogin == true)
+//        {   // condition true means user is already login
+//            NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
+//            navigationView.setNavigationItemSelectedListener(this);
+//            Menu menu = navigationView.getMenu();
+//            MenuItem nav_login = menu.findItem(R.id.nav_logout);
+//        } else
+//        {
+//            Menu menu = navigationView.getMenu();
+//            MenuItem nav_login = menu.findItem(R.id.nav_logout);
+//            // condition false take it user on login form
+//        }
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
