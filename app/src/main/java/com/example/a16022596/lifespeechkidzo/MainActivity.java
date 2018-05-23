@@ -1,6 +1,7 @@
 package com.example.a16022596.lifespeechkidzo;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,10 +10,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +36,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //sidebar start
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+    ArrayList<Category>categoriesList;
+    ListView lvCategory;
+
+
     //sidebar end
-    TextView tvNouns,tvPreposition,tvConcepts,tvPronouns,tvVerb;
-    CardView cvNouns;
-    CardView cvPreposition;
-    CardView cvConcepts;
-    CardView cvPronouns;
-    CardView cvVerb;
     int id ;
 
     @Override
@@ -43,20 +48,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        lvCategory = (ListView)findViewById(R.id.listViewCategory);
         //sidebar start
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        tvNouns = (TextView)findViewById(R.id.textViewNouns);
-        tvPronouns = (TextView)findViewById(R.id.textViewPronouns);
-        tvPreposition = (TextView)findViewById(R.id.textViewPreposition);
-
-
-
-        cvNouns = (CardView)findViewById(R.id.cardViewViewNouns);
-        cvConcepts = (CardView)findViewById(R.id.cardViewConcepts);
-        cvPreposition = (CardView)findViewById(R.id.cardViewPreposition);
-        cvPronouns = (CardView)findViewById(R.id.cardViewViewPronouns);
-        cvVerb = (CardView)findViewById(R.id.cardViewVerb);
 
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -67,53 +61,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemTextColor(null);
         navigationView.setItemTextAppearance(R.style.MenuTextStyle);
-
         retrieve();
-        cvNouns.setOnClickListener(new View.OnClickListener() {
+
+        lvCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                id = 1;
-                Intent i = new Intent(MainActivity.this,showSubsCat.class);
-                i.putExtra("id", id);
-                startActivity(i);
+            public void onItemClick(AdapterView<?> parent, View lView, final int pos, long id) {
+                Intent intent = new Intent(MainActivity.this, showSubsCat.class);
+                Category selectedCategory = categoriesList.get(pos);
+                int categoryId = selectedCategory.getId();
+                intent.putExtra("catId", categoryId);
+                startActivity(intent);
             }
         });
-        cvConcepts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id = 5;
-                Intent i = new Intent(MainActivity.this,showSubsCat.class);
-                i.putExtra("id", id);
-                startActivity(i);
-            }
-        });
-        cvPronouns.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id = 3;
-                Intent i = new Intent(MainActivity.this,showSubsCat.class);
-                i.putExtra("id", id);
-                startActivity(i);
-            }
-        });
-        cvPreposition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id = 2;
-                Intent i = new Intent(MainActivity.this,showSubsCat.class);
-                i.putExtra("id", id);
-                startActivity(i);
-            }
-        });
-        cvVerb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id = 4;
-                Intent i = new Intent(MainActivity.this,showSubsCat.class);
-                i.putExtra("id", id);
-                startActivity(i);
-            }
-        });
+
+
     }
 
     //sidebar start
@@ -169,42 +130,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             "Please connect to internet and try again",
                             Toast.LENGTH_LONG).show();
                 }
-
                 @Override
                 public void onFinish() {
 
                     super.onFinish();
                 }
-
                 @Override
                 public void onStart() {
 
                     super.onStart();
                 }
-
                 @Override
                 public void onSuccess(String response) {
                     try {
-                        JSONArray categoryArray =new JSONArray(response);
-                        Log.i("info", String.valueOf(categoryArray));
-                        String strName = "";
-                        for (int i = 0; i < categoryArray.length(); i++) {
-                            JSONObject moduleObj = (JSONObject) categoryArray.get(i);
-                            String id = (String) moduleObj.get("category_id");
-                            String name = (String) moduleObj.get("category_name");
-                            String iString = String.valueOf(i);
-                            strName += name ;
-                        }
-
-                    } catch (JSONException e) {
-
+                        Category(CategoryObjectJSON(new String(response)));
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             });
-        }
-
     }
+
+    public void Category(ArrayList<String> cat){
+        CategoryAdapter aa = new CategoryAdapter(this,R.layout.categor_view,categoriesList);
+        lvCategory.setAdapter(aa);
+    }
+
+
+    public ArrayList<String> CategoryObjectJSON(String response){
+        ArrayList<String>CategoryNameList = new ArrayList<String>();
+        categoriesList = new ArrayList<Category>();
+        try{
+            JSONArray jsonArray = new JSONArray(response);
+
+            String category;
+            int categoryId ;
+            for (int i= 0;i<jsonArray.length();i++){
+                category = jsonArray.getJSONObject(i).getString("category_name");
+                categoryId = jsonArray.getJSONObject(i).getInt("category_id");
+                CategoryNameList.add(category);
+                categoriesList.add(new Category(category,categoryId));
+                Log.i("info", String.valueOf(category));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return CategoryNameList;
+    }
+}
+
+
 
 
 
