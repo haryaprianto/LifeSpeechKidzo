@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class CategoryAdapter extends ArrayAdapter<Category> {
@@ -39,7 +41,8 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
 
         Category currentCategory = category.get(position);
         tvCategory.setText(currentCategory.getName());
-        imgCategory.setImageResource(R.drawable.lifespeechlogo);
+        String url="https://fypdmsd.000webhostapp.com/images/adventureCurious.jpg";
+        Picasso.get().load(url).into(imgCategory);
 
         return rowView;
     }
