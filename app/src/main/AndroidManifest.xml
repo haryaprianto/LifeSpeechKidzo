@@ -22,18 +22,21 @@
         <activity android:name=".RegisterPage" />
         <activity android:name=".LoginPage" />
         <activity android:name=".ContactPage" />
+        <activity
+            android:name=".ForgetPasswordPage"
+            android:parentActivityName=".LoginPage" />
+        <activity android:name=".ForgetPasswordVerifyPage" />
+        <activity
+            android:name=".ForgetPasswordChangePasswordPage"
+            android:parentActivityName=".LoginPage" />
+        <activity android:name=".showSubsCat" />
+        <activity android:name=".Acc_HomePage" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBrHPOlRNQynhxw0OynPVpz0GvIxj4ucoE" />
 
-        <activity
-            android:name=".ForgetPasswordPage"
-            android:parentActivityName=".LoginPage" />
-        <activity android:name=".ForgetPasswordVerifyPage" />
-        <activity android:name=".ForgetPasswordChangePasswordPage"
-            android:parentActivityName=".LoginPage"/>
-        <activity android:name=".showSubsCat"></activity>
+        <activity android:name=".Acc_ContactPage"></activity>
     </application>
 
 </manifest>

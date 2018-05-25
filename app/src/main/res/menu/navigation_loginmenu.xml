@@ -3,19 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
 
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_accHome"
         android:title="Home"
 
         />
     <item
-        android:id="@+id/nav_Logout"
+
+        android:id="@+id/nav_accProfile"
+        android:title="Profile"
+
+        />
+    <item
+
+        android:id="@+id/nav_navGameHistory"
+        android:title="Game History"
+
+        />
+    <item
+        android:id="@+id/nav_accLogout"
         android:title="Logout" />
 
     <item
-        android:id="@+id/nav_contact"
-        android:title="Contact"/>
+        android:id="@+id/nav_accContact"
+        android:title="Contact" />
 
     <item
-        android:id="@+id/nav_about"
-        android:title="About"/>
+        android:id="@+id/nav_accAbout"
+        android:title="About" />
 </menu>

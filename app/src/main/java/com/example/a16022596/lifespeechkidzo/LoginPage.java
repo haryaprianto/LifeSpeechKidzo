@@ -50,6 +50,7 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setItemTextColor(null);
+
         navigationView.setItemTextAppearance(R.style.MenuTextStyle);
 
 
@@ -113,8 +114,6 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                                 String exist = resultObject.getString("userExist");
                                 String emailverify = resultObject.getString("emailVerify");
 
-                                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LoginPage.this);
-                                boolean Islogin;
 
 //                                  Toast.makeText(getApplicationContext(), exist, Toast.LENGTH_LONG).show();
 //                                Toast.makeText(getApplicationContext(), emailverify, Toast.LENGTH_LONG).show();
@@ -122,20 +121,21 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                                     Toast.makeText(getApplicationContext(),
                                             "Account does exist",
                                             Toast.LENGTH_LONG).show();
-                                            Islogin = prefs.getBoolean("Islogin", false);
 
                                 }else if(emailverify.equals("0")){
                                         Toast.makeText(getApplicationContext(),
                                                 "Please verify your email",Toast.LENGTH_LONG).show();
-                                                Islogin = prefs.getBoolean("Islogin", false);
 
 
                                 }else{
                                         Toast.makeText(getApplicationContext(),
                                                 "Login in successful",
                                                 Toast.LENGTH_LONG).show();
+
+                                                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LoginPage.this);
+                                                boolean Islogin;
                                                 prefs.edit().putBoolean("Islogin", true).commit();
-                                                Intent home = new Intent(LoginPage.this,MainActivity.class);
+                                                Intent home = new Intent(LoginPage.this,Acc_HomePage.class);
                                                 startActivity(home);
                                     }
 
@@ -164,20 +164,7 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
 
 
 
-//    public void checklogin(boolean Islogin){
-//        if(Islogin == true)
-//        {   // condition true means user is already login
-//            NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
-//            navigationView.setNavigationItemSelectedListener(this);
-//            Menu menu = navigationView.getMenu();
-//            MenuItem nav_login = menu.findItem(R.id.nav_logout);
-//        } else
-//        {
-//            Menu menu = navigationView.getMenu();
-//            MenuItem nav_login = menu.findItem(R.id.nav_logout);
-//            // condition false take it user on login form
-//        }
-//    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
