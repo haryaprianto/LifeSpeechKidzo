@@ -42,8 +42,8 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
 
         Category currentCategory = category.get(position);
         tvCategory.setText(currentCategory.getName());
-        String url = currentCategory.getLinkImage();
-        Log.i("info",url);
+        String url = "https://fypdmsd.000webhostapp.com/ws/images/"+currentCategory.getLinkImage();
+        Log.i("ttturl",url);
         if (!url.isEmpty()){
 //            Picasso.get().load(url).resize(100,50).into(imgCategory);
 

@@ -25,7 +25,8 @@
         <activity
             android:name=".ForgetPasswordPage"
             android:parentActivityName=".LoginPage" />
-        <activity android:name=".ForgetPasswordVerifyPage" />
+        <activity android:name=".ForgetPasswordVerifyPage"
+            android:parentActivityName=".ForgetPasswordPage"/>
         <activity
             android:name=".ForgetPasswordChangePasswordPage"
             android:parentActivityName=".LoginPage" />
