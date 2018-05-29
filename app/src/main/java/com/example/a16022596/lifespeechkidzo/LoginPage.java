@@ -82,7 +82,7 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                             Toast.LENGTH_SHORT).show();
 
                     String url = "https://fypandroiddmsd.000webhostapp.com/AdoLoginAndroid.php?username="+etUsername.getText().toString()+"&password="+etPassword.getText().toString()+"";
-//                    Log.i("ttturl",url);
+                    Log.i("ttturl",url);
                     AsyncHttpClient client = new AsyncHttpClient();
                     client.get(url, new AsyncHttpResponseHandler() {
 
@@ -108,18 +108,23 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
 
                         @Override
                         public void onSuccess(String response) {
+                            Log.i("tttrespond",response);
                             try {
+
+
                                 JSONObject jsonObj = new JSONObject(response);
                                 JSONObject resultObject = jsonObj.getJSONObject("result");
                                 String exist = resultObject.getString("userExist");
                                 String emailverify = resultObject.getString("emailVerify");
 
+                                Log.i("tttexist",response+resultObject+"\n"+exist+"\n"+emailverify);
 
-//                                  Toast.makeText(getApplicationContext(), exist, Toast.LENGTH_LONG).show();
-//                                Toast.makeText(getApplicationContext(), emailverify, Toast.LENGTH_LONG).show();
+//                              Toast.makeText(getApplicationContext(), exist, Toast.LENGTH_LONG).show();
+//                              Toast.makeText(getApplicationContext(), emailverify, Toast.LENGTH_LONG).show();
+
                                 if (exist.equals("0")){
                                     Toast.makeText(getApplicationContext(),
-                                            "Account does exist",
+                                            "Account does not exist",
                                             Toast.LENGTH_LONG).show();
 
                                 }else if(emailverify.equals("0")){
