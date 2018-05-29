@@ -72,12 +72,15 @@ public class ForgetPasswordPage extends AppCompatActivity {
                         public void onSuccess(String response) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
+                                Log.i("tttforgetpwd res",response+"");
                                 JSONObject resultObject = jsonObj.getJSONObject("result");
                                 String exist = resultObject.getString("userExists");
                                 String verify = resultObject.getString("userVerify");
                                 String emailsend = resultObject.getString("EmailSuccess");
 //                                Toast.makeText(getApplicationContext(), exist, Toast.LENGTH_LONG).show();
-//                                Toast.makeText(getApplicationContext(), emailverify, Toast.LENGTH_LONG).show();
+//                                Toast.makeText(getApplicationContext(), emailsend, Toast.LENGTH_LONG).show();
+
+
 
                                 if (exist.equals("0")){
                                     Toast.makeText(getApplicationContext(),

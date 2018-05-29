@@ -25,8 +25,9 @@
         <activity
             android:name=".ForgetPasswordPage"
             android:parentActivityName=".LoginPage" />
-        <activity android:name=".ForgetPasswordVerifyPage"
-            android:parentActivityName=".ForgetPasswordPage"/>
+        <activity
+            android:name=".ForgetPasswordVerifyPage"
+            android:parentActivityName=".ForgetPasswordPage" />
         <activity
             android:name=".ForgetPasswordChangePasswordPage"
             android:parentActivityName=".LoginPage" />
@@ -37,7 +38,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBrHPOlRNQynhxw0OynPVpz0GvIxj4ucoE" />
 
-        <activity android:name=".Acc_ContactPage"></activity>
+        <activity android:name=".Acc_ContactPage" />
+        <activity android:name=".Acc_ProfilePage"></activity>
     </application>
 
 </manifest>

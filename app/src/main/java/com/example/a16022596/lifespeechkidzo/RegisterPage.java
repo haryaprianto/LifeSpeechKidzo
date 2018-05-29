@@ -188,6 +188,7 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onSuccess(String response) {
                     try {
+                        Log.i("tttrp",response);
                         JSONObject jsonObj = new JSONObject(response);
                         JSONObject resultObject = jsonObj.getJSONObject("result");
                         String username = resultObject.getString("userExists");
