@@ -39,7 +39,8 @@
             android:value="AIzaSyBrHPOlRNQynhxw0OynPVpz0GvIxj4ucoE" />
 
         <activity android:name=".Acc_ContactPage" />
-        <activity android:name=".Acc_ProfilePage"></activity>
+        <activity android:name=".Acc_ProfilePage" />
+        <activity android:name=".LessonActivity"></activity>
     </application>
 
 </manifest>
