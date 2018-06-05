@@ -40,7 +40,8 @@
 
         <activity android:name=".Acc_ContactPage" />
         <activity android:name=".Acc_ProfilePage" />
-        <activity android:name=".LessonActivity"></activity>
+        <activity android:name=".LessonActivity" />
+        <activity android:name=".SelectQuizDifficulty"></activity>
     </application>
 
 </manifest>
