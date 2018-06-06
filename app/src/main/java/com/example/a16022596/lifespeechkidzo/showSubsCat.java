@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,11 +20,27 @@ import java.util.ArrayList;
 public class showSubsCat extends AppCompatActivity {
     ListView lvSubsCategory;
 
+
+    ArrayList<String>subsCategoryNameList = new ArrayList<String>();
+    ArrayList<Integer>subCategoryIdList = new ArrayList<Integer>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_subs_cat);
         lvSubsCategory = findViewById(R.id.listViewSubs);
+
+        lvSubsCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View lView, final int pos, long id) {
+                Intent intent = new Intent(showSubsCat.this, LessonActivity.class);
+                int subCategoryId = subCategoryIdList.get(pos);
+                String strSubCategoryId = String.valueOf(subCategoryId);
+                intent.putExtra("subCatId", strSubCategoryId);
+                startActivity(intent);
+            }
+        });
+
         retrieveSubsCategory();
     }
     private void retrieveSubsCategory(){
@@ -65,16 +83,17 @@ public class showSubsCat extends AppCompatActivity {
 
 
     public ArrayList<String> subsCategoryObjectJSON(String response){
-        ArrayList<String>subsCategoryNameList = new ArrayList<String>();
-
 
         try{
             JSONArray jsonArray = new JSONArray(response);
 
             String subsCategory;
+            int subCategoryId;
             for (int i= 0;i<jsonArray.length();i++){
                 subsCategory = jsonArray.getJSONObject(i).getString("subcategory_name");
+                subCategoryId = jsonArray.getJSONObject(i).getInt("subcategory_id");
                 subsCategoryNameList.add(subsCategory);
+                subCategoryIdList.add(subCategoryId);
                 Log.i("info", String.valueOf(subsCategory));
             }
         }catch (Exception e){
