@@ -215,7 +215,7 @@ public class Acc_ProfilePage extends AppCompatActivity {
             String url = "https://fypandroiddmsd.000webhostapp.com/AdoUpdateProfileUpdate.php?username="+username+"&firstname="+firstname+"&lastname="+lastname+"&password="+firstpassword+"&email="+etEmail.getText().toString()+"&id="+id+"";
             Log.i("ttturl",url+"");
             AsyncHttpClient client = new AsyncHttpClient();
-            client.get(URLEncoder.encode(url), new AsyncHttpResponseHandler() {
+            client.get(url, new AsyncHttpResponseHandler() {
 
                 @Override
                 public void onFailure(Throwable arg0, String arg1) {
