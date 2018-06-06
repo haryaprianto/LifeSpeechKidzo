@@ -87,9 +87,9 @@ public class Acc_HomePage extends AppCompatActivity  implements NavigationView.O
 
 
         } else if (id == R.id.nav_accProfile) {
-            Toast.makeText(Acc_HomePage.this,"Profile",Toast.LENGTH_LONG).show();
-//            Intent mainActivityIntent = new Intent(Acc_HomePage.this, LoginPage.class);
-//            startActivity(mainActivityIntent);
+//            Toast.makeText(Acc_HomePage.this,"Profile",Toast.LENGTH_LONG).show();
+            Intent mainActivityIntent = new Intent(Acc_HomePage.this, Acc_ProfilePage.class);
+            startActivity(mainActivityIntent);
         } else if (id == R.id.nav_navGameHistory) {
             Toast.makeText(Acc_HomePage.this,"Game History",Toast.LENGTH_LONG).show();
 //            Intent mainActivityIntent = new Intent(Acc_HomePage.this, RegisterPage.class);
@@ -118,6 +118,8 @@ public class Acc_HomePage extends AppCompatActivity  implements NavigationView.O
         }
         return false;
     }
+
+
     private void retrieve() {
 
         String url = "https://fypdmsd.000webhostapp.com/retrieveCategoriesAndroid.php";
