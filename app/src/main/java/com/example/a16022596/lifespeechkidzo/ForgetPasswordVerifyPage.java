@@ -93,12 +93,19 @@ public class ForgetPasswordVerifyPage extends AppCompatActivity {
                         JSONObject jsonObj = new JSONObject(response);
                         JSONObject resultObject = jsonObj.getJSONObject("result");
                         String exist = resultObject.getString("tokenExist");
+                        String expire = resultObject.getString("isExpire");
                         if (exist.equals("0")) {
                             Toast.makeText(getApplicationContext(),
                                     "Wrong Code",
                                     Toast.LENGTH_LONG).show();
 
-                        } else {
+                        }else if(expire.equals("expired")) {
+                            Toast.makeText(getApplicationContext(),
+                                    "The Code Has Expired",
+                                    Toast.LENGTH_LONG).show();
+
+                        }else
+                         {
                             Toast.makeText(getApplicationContext(),
                                     "Verify successful",
                                     Toast.LENGTH_LONG).show();

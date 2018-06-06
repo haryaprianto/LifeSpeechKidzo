@@ -82,7 +82,7 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                             Toast.LENGTH_SHORT).show();
 
                     String url = "https://fypandroiddmsd.000webhostapp.com/AdoLoginAndroid.php?username="+etUsername.getText().toString()+"&password="+etPassword.getText().toString()+"";
-                    Log.i("ttturl",url);
+//                    Log.i("ttturl",url);
                     AsyncHttpClient client = new AsyncHttpClient();
                     client.get(url, new AsyncHttpResponseHandler() {
 
@@ -138,8 +138,8 @@ public class LoginPage extends AppCompatActivity implements NavigationView.OnNav
                                                 Toast.LENGTH_LONG).show();
 
                                                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LoginPage.this);
-                                                boolean Islogin;
                                                 prefs.edit().putBoolean("Islogin", true).commit();
+                                                prefs.edit().putString("LoginUsername",etUsername.getText().toString()).commit();
                                                 Intent home = new Intent(LoginPage.this,Acc_HomePage.class);
                                                 startActivity(home);
                                     }

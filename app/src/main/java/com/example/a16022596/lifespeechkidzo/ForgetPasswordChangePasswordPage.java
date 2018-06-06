@@ -39,62 +39,6 @@ public class ForgetPasswordChangePasswordPage extends AppCompatActivity {
 
 
 
-                    Toast.makeText(getApplicationContext(),
-                            "Please wait",
-                            Toast.LENGTH_SHORT).show();
-
-                    String url = "https://fypandroiddmsd.000webhostapp.com/AdoForgetPassword2.php?newpassword="+editTextChangpw1.getText().toString()+"&token="+token;
-//                    Log.i("ttturl",url);
-                    AsyncHttpClient client = new AsyncHttpClient();
-                    client.get(url, new AsyncHttpResponseHandler() {
-
-                        @Override
-                        public void onFailure(Throwable arg0, String arg1) {
-                            Toast.makeText(getApplicationContext(),
-                                    "Please connect to internet and try again",
-                                    Toast.LENGTH_LONG).show();
-
-
-                        }
-
-                        @Override
-                        public void onFinish() {
-
-                            super.onFinish();
-                        }
-
-                        @Override
-                        public void onStart() {
-
-                            super.onStart();
-                        }
-
-                        @Override
-                        public void onSuccess(String response) {
-                            try {
-                                JSONObject jsonObj = new JSONObject(response);
-                                JSONObject resultObject = jsonObj.getJSONObject("result");
-                                String passwordChange = resultObject.getString("passwordChange");
-                                Toast.makeText(getApplicationContext(), passwordChange, Toast.LENGTH_LONG).show();
-                                if (passwordChange.equals("0")){
-                                    Toast.makeText(getApplicationContext(),
-                                            "Invalid Password",
-                                            Toast.LENGTH_LONG).show();
-
-                                }else{
-                                    Toast.makeText(getApplicationContext(),
-                                            "Password Change Successful",
-                                            Toast.LENGTH_LONG).show();
-                                    Intent home = new Intent(ForgetPasswordChangePasswordPage.this,LoginPage.class);
-                                    startActivity(home);
-                                }
-
-                            } catch (JSONException e) {
-
-                                e.printStackTrace();
-                            }
-                        }
-                    });
                 }
 
 
@@ -128,6 +72,64 @@ public class ForgetPasswordChangePasswordPage extends AppCompatActivity {
             editTextChangpw1.setError("Password does not match");
             editTextChangpw1.requestFocus();
             return;
+        }else{
+
+            Toast.makeText(getApplicationContext(),
+                    "Please wait",
+                    Toast.LENGTH_SHORT).show();
+
+            String url = "https://fypandroiddmsd.000webhostapp.com/AdoForgetPassword2.php?newpassword="+editTextChangpw1.getText().toString()+"&token="+token;
+//                    Log.i("ttturl",url);
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.get(url, new AsyncHttpResponseHandler() {
+
+                @Override
+                public void onFailure(Throwable arg0, String arg1) {
+                    Toast.makeText(getApplicationContext(),
+                            "Please connect to internet and try again",
+                            Toast.LENGTH_LONG).show();
+
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                    super.onFinish();
+                }
+
+                @Override
+                public void onStart() {
+
+                    super.onStart();
+                }
+
+                @Override
+                public void onSuccess(String response) {
+                    try {
+                        JSONObject jsonObj = new JSONObject(response);
+                        JSONObject resultObject = jsonObj.getJSONObject("result");
+                        String passwordChange = resultObject.getString("passwordChange");
+                        Toast.makeText(getApplicationContext(), passwordChange, Toast.LENGTH_LONG).show();
+                        if (passwordChange.equals("0")){
+                            Toast.makeText(getApplicationContext(),
+                                    "Invalid Password",
+                                    Toast.LENGTH_LONG).show();
+
+                        }else{
+                            Toast.makeText(getApplicationContext(),
+                                    "Password Change Successful",
+                                    Toast.LENGTH_LONG).show();
+                            Intent home = new Intent(ForgetPasswordChangePasswordPage.this,LoginPage.class);
+                            startActivity(home);
+                        }
+
+                    } catch (JSONException e) {
+
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
 
 

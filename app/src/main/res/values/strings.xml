@@ -30,6 +30,11 @@
     <string name="regnewpwd">Enter New Password</string>
     <string name="regnewpwdconfirm">Enter New Confirm Password</string>
 
+    <!--updateprofile-->
+    <string name="updateprofile">Update Profile</string>
+    <string name="update">Update</string>
+
+
 
     <string name="contactus">Contact Us</string>
     <string name="contectdes">We are always delighted to be of service\n to you! Please note out address\n mentioned below for reference.</string>
