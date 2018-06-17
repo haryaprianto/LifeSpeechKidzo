@@ -36,7 +36,7 @@ public class SelectQuizDifficulty extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Integer quizId = quizIdList.get(position);
-                Log.i("QUIZID",String.valueOf(quizId));
+//                Log.i("QUIZID",String.valueOf(quizId));
             }
 
             @Override
@@ -94,7 +94,7 @@ public class SelectQuizDifficulty extends AppCompatActivity {
             int quizId;
             for (int i= 0;i<jsonArray.length();i++){
                 diffcultyName = jsonArray.getJSONObject(i).getString("quiz_name");
-                Log.i("Quiz Name ", diffcultyName);
+//                Log.i("Quiz Name ", diffcultyName);
                 quizId = jsonArray.getJSONObject(i).getInt("quiz_id");
                 difficultyLevelName.add(diffcultyName);
                 quizIdList.add(quizId);

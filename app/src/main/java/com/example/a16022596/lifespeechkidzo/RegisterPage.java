@@ -141,7 +141,7 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
         }
 
         if (secondpassword.isEmpty()) {
-            etPassword2.setError("Password is required");
+            etPassword2.setError("Passwords is required");
             etPassword2.requestFocus();
             return;
         }
@@ -159,7 +159,7 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
                     "Please wait",
                     Toast.LENGTH_SHORT).show();
 
-            String url = "https://fypandroiddmsd.000webhostapp.com/AdoRegisterAndroid.php?firstName=" + etFirstname.getText().toString() + "&lastName=" + etLastname.getText().toString() + "&email=" + etEmail.getText().toString() + "&username=" + etLastname.getText().toString() + "&password=" + etPassword.getText().toString() + "&username="+etUsername.getText().toString()+"";
+            String url = "https://fypandroiddmsd.000webhostapp.com/AdoRegisterAndroid.php?firstName=" + etFirstname.getText().toString() + "&lastName=" + etLastname.getText().toString() + "&email=" + etEmail.getText().toString() + "&password=" + etPassword.getText().toString() + "&username="+etUsername.getText().toString()+"&user_accountype=normal";
 //            Log.i("ttturl",url);
             AsyncHttpClient client = new AsyncHttpClient();
             client.get(url, new AsyncHttpResponseHandler() {
@@ -202,7 +202,7 @@ public class RegisterPage extends AppCompatActivity implements NavigationView.On
 
                         } else {
                             Toast.makeText(RegisterPage.this,
-                                    "Account create successful please verify your email",
+                                    "Account created successful please verify your email",
                                     Toast.LENGTH_LONG).show();
                                     Intent login = new Intent(RegisterPage.this,LoginPage.class);
                                     startActivity(login);

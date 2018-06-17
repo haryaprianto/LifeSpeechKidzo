@@ -94,7 +94,7 @@ public class showSubsCat extends AppCompatActivity {
                 subCategoryId = jsonArray.getJSONObject(i).getInt("subcategory_id");
                 subsCategoryNameList.add(subsCategory);
                 subCategoryIdList.add(subCategoryId);
-                Log.i("info", String.valueOf(subsCategory));
+//                Log.i("info", String.valueOf(subsCategory));
             }
         }catch (Exception e){
             e.printStackTrace();

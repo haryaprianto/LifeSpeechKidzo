@@ -25,6 +25,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemTextColor(null);
         navigationView.setItemTextAppearance(R.style.MenuTextStyle);
+        //sidebar end
         retrieve();
 
         lvCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -118,9 +120,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // Set the URL to be used.
             rpIntent.setData(Uri.parse("https://lifespeech.org/about-us/"));
             startActivity(rpIntent);
+        }else if (id == R.id.nav_accHome) {
+            Intent mainActivityIntent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(mainActivityIntent);
+
+
+        } else if (id == R.id.nav_accProfile) {
+//            Toast.makeText(MainActivity.this,"Profile",Toast.LENGTH_LONG).show();
+            Intent mainActivityIntent = new Intent(MainActivity.this, Acc_ProfilePage.class);
+            startActivity(mainActivityIntent);
+        } else if (id == R.id.nav_navGameHistory) {
+            Toast.makeText(MainActivity.this,"Game History",Toast.LENGTH_LONG).show();
+//            Intent mainActivityIntent = new Intent(Acc_HomePage.this, RegisterPage.class);
+//            startActivity(mainActivityIntent);
+
+
+        } else if (id == R.id.nav_accLogout) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            boolean Islogin;
+            prefs.edit().putBoolean("Islogin", false).commit();
+            prefs.edit().putString("LoginUsername", "").commit();
+            prefs.edit().putString("AccountType", "").commit();
+            LoginManager.getInstance().logOut();
+            navigationdrawer();
+            Intent mainActivityIntent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(mainActivityIntent);
+
+
+        } else if (id == R.id.nav_accContact) {
+
+            Intent mainActivityIntent = new Intent(MainActivity.this, ContactPage.class);
+            startActivity(mainActivityIntent);
+
+        } else if (id == R.id.nav_accAbout) {
+
+            Intent rpIntent = new Intent(Intent.ACTION_VIEW);
+            // Set the URL to be used.
+            rpIntent.setData(Uri.parse("https://lifespeech.org/about-us/"));
+            startActivity(rpIntent);
         }
         return false;
     }
+    //sidebar end
+
     private void retrieve() {
 
             String url = "https://fypdmsd.000webhostapp.com/retrieveCategoriesAndroid.php";
@@ -173,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 categoryImageUrl = jsonArray.getJSONObject(i).getString("image");
                 CategoryNameList.add(category);
                 categoriesList.add(new Category(category,categoryId,categoryImageUrl));
-                Log.i("info", String.valueOf(category));
+//                Log.i("info", String.valueOf(category));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -184,13 +226,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
+        navigationdrawer();
+
+    }
+
+    public void navigationdrawer(){
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         boolean islogin = prefs.getBoolean("Islogin",false);
-        Log.i("tttpref",islogin+"");
+        String isfb = prefs.getString("AccountType","");
+        Log.i("tttpref",islogin+":"+isfb);
         if(islogin == true){
-            Intent i = new Intent(MainActivity.this,Acc_HomePage.class);
-            startActivity(i);
+            if(isfb.equals("normal")){
+                navigationView.getMenu().clear();
+                navigationView.inflateMenu(R.menu.navigation_loginmenu);
+            }else{
+                navigationView.getMenu().clear();
+                navigationView.inflateMenu(R.menu.navigation_facebookloginmenu);
+            }
+
+        }else{
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.navigation_menu);
         }
+
+
     }
 }
 

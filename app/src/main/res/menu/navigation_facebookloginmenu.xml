@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+
+        android:id="@+id/nav_accHome"
+        android:title="Home"
+
+        />
+    <item
+
+        android:id="@+id/nav_navGameHistory"
+        android:title="Game History"
+
+        />
+    <item
+        android:id="@+id/nav_accLogout"
+        android:title="Logout" />
+
+    <item
+        android:id="@+id/nav_accContact"
+        android:title="Contact" />
+
+    <item
+        android:id="@+id/nav_accAbout"
+        android:title="About" />
+</menu>

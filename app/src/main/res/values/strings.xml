@@ -7,6 +7,7 @@
     <string name="regtvTitleEmail">Email</string>
     <string name="login">Login</string>
     <string name="regtvTitlePassword">Password:</string>
+    <string name="fblogin">Facebook Login</string>
 
     <!--Register-->
     <string name="regtvTitleConfirmPassword">Confirm Password:</string>
@@ -35,7 +36,6 @@
     <string name="update">Update</string>
 
 
-
     <string name="contactus">Contact Us</string>
     <string name="contectdes">We are always delighted to be of service\n to you! Please note out address\n mentioned below for reference.</string>
     <string name="ouroffice">Our Office</string>
@@ -50,5 +50,10 @@
     <string name="textviewPreposition">Preposition</string>
     <string name="textVerb">Verb</string>
     <string name="textConcepts">Concepts</string>
+
+
+    <string name="facebook_app_id">190897715076966</string>
+    <string name="fb_login_protocol_scheme">fb190897715076966</string>
+
 
 </resources>

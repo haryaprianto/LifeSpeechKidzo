@@ -41,7 +41,7 @@ public class LessonActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View lView, final int pos, long id) {
                 Lesson selectedLesson = lessonList.get(pos);
                 String urlAudio = selectedLesson.getContentAudio();
-                Log.i("Audio",urlAudio);
+//                Log.i("Audio",urlAudio);
                 MediaPlayer mediaPlayer = new MediaPlayer();
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 try {
@@ -130,7 +130,7 @@ public class LessonActivity extends AppCompatActivity {
                 contentAudio = jsonArray.getJSONObject(i).getString("content_audio");
                 LessonListName.add(contentName);
                 lessonList.add(new Lesson(contentId,lessonImageUrl,contentAudio,contentName,subCatId));
-                Log.i("info", String.valueOf(contentName));
+//                Log.i("info", String.valueOf(contentName));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -143,9 +143,9 @@ public class LessonActivity extends AppCompatActivity {
         super.onResume();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LessonActivity.this);
         boolean islogin = prefs.getBoolean("Islogin",false);
-        Log.i("tttpref",islogin+"");
+//        Log.i("tttpref",islogin+"");
         if(islogin == true){
-            Intent i = new Intent(LessonActivity.this,Acc_HomePage.class);
+            Intent i = new Intent(LessonActivity.this,MainActivity.class);
             startActivity(i);
         }
     }
