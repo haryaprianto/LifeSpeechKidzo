@@ -21,50 +21,40 @@
         android:gravity="center"
         app:srcCompat="@android:drawable/btn_star_big_on" />
 
-    <RadioGroup
-        android:id="@+id/rg"
+    <Button
+        android:id="@+id/buttonOption1"
         android:layout_width="match_parent"
-        android:layout_height="193dp">
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
-        <RadioButton
-            android:id="@+id/radioOption1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="RadioButton" />
+    <Button
+        android:id="@+id/buttonOption2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
-        <RadioButton
-            android:id="@+id/radioOption2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="RadioButton" />
+    <Button
+        android:id="@+id/buttonOption3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
-        <RadioButton
-            android:id="@+id/radioOption3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="RadioButton" />
-
-        <RadioButton
-            android:id="@+id/radioOption4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="RadioButton" />
-    </RadioGroup>
+    <Button
+        android:id="@+id/buttonOption4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
     <TextView
         android:id="@+id/textViewScore"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/textViewTimer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="39dp"
         android:gravity="bottom"
         android:text="TextView" />
 
@@ -73,18 +63,5 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/buttonPrevious"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Previous Question" />
-
-        <Button
-            android:id="@+id/buttonNext"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Next Question" />
     </LinearLayout>
 </android.widget.LinearLayout>

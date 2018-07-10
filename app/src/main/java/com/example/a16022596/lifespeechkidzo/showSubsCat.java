@@ -81,9 +81,7 @@ public class showSubsCat extends AppCompatActivity {
         lvSubsCategory.setAdapter(adapter);
     }
 
-
     public ArrayList<String> subsCategoryObjectJSON(String response){
-
         try{
             JSONArray jsonArray = new JSONArray(response);
 

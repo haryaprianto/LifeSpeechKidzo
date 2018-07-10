@@ -1,24 +1,43 @@
 package com.example.a16022596.lifespeechkidzo;
 
 public class Question {
-    private  int  questionId;
     private String question;
-    private String questionAnswer;
-    private  String questionAnswer1;
-    private String questionAnswer2;
-    private String questionAnswer3;
-    private  String questionImage;
-    private int quiz_id;
+    private int questionId;
+    private  int quizId;
+    private String[] choice = new String[4];
+    private String answer;
+    private String image;
 
-    public Question(int questionId, String question, String questionAnswer, String questionAnswer1, String questionAnswer2, String questionAnswer3, String questionImage, int quiz_id) {
-        this.questionId = questionId;
+    public Question (){
+
+    }
+    public Question(String question, String[] choices, String answer,String image){
         this.question = question;
-        this.questionAnswer = questionAnswer;
-        this.questionAnswer1 = questionAnswer1;
-        this.questionAnswer2 = questionAnswer2;
-        this.questionAnswer3 = questionAnswer3;
-        this.questionImage = questionImage;
-        this.quiz_id = quiz_id;
+        this.choice[0] = choices[0];
+        this.choice[1] = choices[1];
+        this.choice[2] = choices[2];
+        this.choice[3] = choices[3];
+        this.answer = answer;
+        this.image = image;
+    }
+    public String getQuestion(){
+        return question;
+    }
+
+    public String getChoice(int i){
+        return choice[i];
+    }
+    public  String getAnswer(){
+        return answer;
+    }
+    public void setAnswer(String answer){
+        this.answer = answer;
+    }
+    public void setChoice(int i, String choice){
+        this.choice[i] = choice;
+    }
+    public void setQuestion(String question){
+        this.question = question;
     }
 
     public int getQuestionId() {
@@ -29,59 +48,19 @@ public class Question {
         this.questionId = questionId;
     }
 
-    public String getQuestion() {
-        return question;
+    public int getQuizId() {
+        return quizId;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
     }
 
-    public String getQuestionAnswer() {
-        return questionAnswer;
+    public String getImage() {
+        return image;
     }
 
-    public void setQuestionAnswer(String questionAnswer) {
-        this.questionAnswer = questionAnswer;
-    }
-
-    public String getQuestionAnswer1() {
-        return questionAnswer1;
-    }
-
-    public void setQuestionAnswer1(String questionAnswer1) {
-        this.questionAnswer1 = questionAnswer1;
-    }
-
-    public String getQuestionAnswer2() {
-        return questionAnswer2;
-    }
-
-    public void setQuestionAnswer2(String questionAnswer2) {
-        this.questionAnswer2 = questionAnswer2;
-    }
-
-    public String getQuestionAnswer3() {
-        return questionAnswer3;
-    }
-
-    public void setQuestionAnswer3(String questionAnswer3) {
-        this.questionAnswer3 = questionAnswer3;
-    }
-
-    public String getQuestionImage() {
-        return questionImage;
-    }
-
-    public void setQuestionImage(String questionImage) {
-        this.questionImage = questionImage;
-    }
-
-    public int getQuiz_id() {
-        return quiz_id;
-    }
-
-    public void setQuiz_id(int quiz_id) {
-        this.quiz_id = quiz_id;
+    public void setImage(String image) {
+        this.image = image;
     }
 }
