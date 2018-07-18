@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ public class SelectQuizDifficulty extends AppCompatActivity {
     ArrayList<String>difficultyLevelName = new ArrayList<String>();
     ArrayList<Integer>quizIdList = new ArrayList<Integer>();
     Spinner spnDifficulty;
+    Button btnStartQuiz;
+    Integer quizId;
 
 
     @Override
@@ -30,12 +33,14 @@ public class SelectQuizDifficulty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_quiz_difficulty);
         spnDifficulty = findViewById(R.id.spinnerQuizDifficulty);
+        btnStartQuiz = findViewById(R.id.buttonStartQuiz);
         retrieveDifficultyLevel();
+
 
         spnDifficulty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Integer quizId = quizIdList.get(position);
+                quizId = quizIdList.get(position);
                 Log.i("QUIZID",String.valueOf(quizId));
             }
 
@@ -44,6 +49,24 @@ public class SelectQuizDifficulty extends AppCompatActivity {
 
             }
         });
+
+        btnStartQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("SelectedQuizId",String.valueOf(quizId));
+                if (quizId == 6){
+                    Intent intent = new Intent(SelectQuizDifficulty.this, QuizActivity.class);
+                    intent.putExtra("selectedQuizId", quizId);
+                    startActivity(intent);
+                }
+                else if (quizId == 7){
+                    Intent intent = new Intent(SelectQuizDifficulty.this, MediumQuizPage.class);
+                    intent.putExtra("selectedQuizId", quizId);
+                    startActivity(intent);
+                }
+            }
+        });
+
 
     }
     private void retrieveDifficultyLevel(){

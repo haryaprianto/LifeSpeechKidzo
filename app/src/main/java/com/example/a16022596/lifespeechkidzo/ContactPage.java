@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class ContactPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,OnMapReadyCallback {
     //sidebar start
     private DrawerLayout mDrawerLayout;
+
     private ActionBarDrawerToggle mToggle;
     //sidebar end
     private ImageView imgtwitter,imgfb;

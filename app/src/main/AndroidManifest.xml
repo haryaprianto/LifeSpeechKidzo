@@ -62,7 +62,9 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".FacebookUsername"></activity>
+        <activity android:name=".FacebookUsername" />
+        <activity android:name=".MediumQuizPage" />
+        <activity android:name=".Result"></activity>
     </application>
 
 </manifest>

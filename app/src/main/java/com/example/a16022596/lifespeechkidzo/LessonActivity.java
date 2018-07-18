@@ -59,6 +59,31 @@ public class LessonActivity extends AppCompatActivity {
             }
         });
 
+        lvLesson.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            public boolean onItemLongClick(AdapterView<?> arg0, View v,
+                                           int index, long arg3) {
+
+                Lesson selectedLesson = lessonList.get(index);
+                String urlSpellAudio = selectedLesson.getAudioSpellLink();
+                MediaPlayer mediaPlayer = new MediaPlayer();
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                try {
+                    mediaPlayer.setDataSource(urlSpellAudio);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    mediaPlayer.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                mediaPlayer.start();
+                return true;
+            }
+        });
+
         btnSelectCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,14 +147,16 @@ public class LessonActivity extends AppCompatActivity {
             int contentId;
             int subCatId;
             String contentAudio;
+            String audioSpell;
             for (int i= 0;i<jsonArray.length();i++){
                 lessonImageUrl = jsonArray.getJSONObject(i).getString("content_image");
                 contentName = jsonArray.getJSONObject(i).getString("content_name");
                 contentId = jsonArray.getJSONObject(i).getInt("content_id");
                 subCatId = jsonArray.getJSONObject(i).getInt("subcategory_id");
                 contentAudio = jsonArray.getJSONObject(i).getString("content_audio");
+                audioSpell = jsonArray.getJSONObject(i).getString("audio_spell");
                 LessonListName.add(contentName);
-                lessonList.add(new Lesson(contentId,lessonImageUrl,contentAudio,contentName,subCatId));
+                lessonList.add(new Lesson(contentId,lessonImageUrl,contentAudio,contentName,subCatId,audioSpell));
 //                Log.i("info", String.valueOf(contentName));
             }
         }catch (Exception e){

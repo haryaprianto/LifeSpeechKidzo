@@ -1,5 +1,13 @@
 package com.example.a16022596.lifespeechkidzo;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -5,14 +5,16 @@ public class Lesson {
     private String contentImage;
     private String contentAudio;
     private String contentName;
+    private String audioSpellLink;
     private int subsCatId;
 
-    public Lesson(int contentId, String contentImage, String contentAudio, String contentName, int subsCatId) {
+    public Lesson(int contentId, String contentImage, String contentAudio, String contentName, int subsCatId,String audioSpellLink) {
         this.contentId = contentId;
         this.contentImage = contentImage;
         this.contentAudio = contentAudio;
         this.contentName = contentName;
         this.subsCatId = subsCatId;
+        this.audioSpellLink = audioSpellLink;
     }
 
     public int getContentId() {
@@ -53,5 +55,13 @@ public class Lesson {
 
     public void setSubsCatId(int setSubsCatId) {
         this.subsCatId = subsCatId;
+    }
+
+    public String getAudioSpellLink() {
+        return audioSpellLink;
+    }
+
+    public void setAudioSpellLink(String audioSpellLink) {
+        this.audioSpellLink = audioSpellLink;
     }
 }
