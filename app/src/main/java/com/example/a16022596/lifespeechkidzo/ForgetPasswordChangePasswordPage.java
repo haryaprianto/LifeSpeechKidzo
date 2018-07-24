@@ -37,7 +37,7 @@ public class ForgetPasswordChangePasswordPage extends AppCompatActivity {
             public void onClick(View view) {
                 check();
 
- 
+
 
                 }
 
