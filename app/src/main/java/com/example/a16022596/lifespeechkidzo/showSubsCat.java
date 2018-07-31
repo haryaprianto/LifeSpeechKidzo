@@ -28,16 +28,18 @@ public class showSubsCat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_subs_cat);
+
         lvSubsCategory = findViewById(R.id.listViewSubs);
 
         lvSubsCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View lView, final int pos, long id) {
-                Intent intent = new Intent(showSubsCat.this, LessonActivity.class);
+                Intent i = new Intent(showSubsCat.this, LessonActivity.class);
                 int subCategoryId = subCategoryIdList.get(pos);
                 String strSubCategoryId = String.valueOf(subCategoryId);
-                intent.putExtra("subCatId", strSubCategoryId);
-                startActivity(intent);
+                i.putExtra("subCatId", strSubCategoryId);
+                Log.i("subcategory",strSubCategoryId+"");
+                startActivity(i);
             }
         });
 

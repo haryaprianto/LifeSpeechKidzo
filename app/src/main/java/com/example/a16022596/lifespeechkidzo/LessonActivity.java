@@ -32,9 +32,10 @@ public class LessonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
+        retrieveContent();
         lvLesson = (ListView)findViewById(R.id.listVIewLesson);
         btnSelectCategory = (Button)findViewById(R.id.buttonSelectDiff);
-        retrieveContent();
+
 
         lvLesson.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -165,15 +166,15 @@ public class LessonActivity extends AppCompatActivity {
         return LessonListName;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LessonActivity.this);
-        boolean islogin = prefs.getBoolean("Islogin",false);
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LessonActivity.this);
+//        boolean islogin = prefs.getBoolean("Islogin",false);
 //        Log.i("tttpref",islogin+"");
-        if(islogin == true){
-            Intent i = new Intent(LessonActivity.this,MainActivity.class);
-            startActivity(i);
-        }
-    }
+//        if(islogin == true){
+//            Intent i = new Intent(LessonActivity.this,MainActivity.class);
+//            startActivity(i);
+//        }
+//    }
 }

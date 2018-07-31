@@ -65,6 +65,10 @@
         <activity android:name=".FacebookUsername" />
         <activity android:name=".MediumQuizPage" />
         <activity android:name=".Result"></activity>
+
+        <provider android:authorities="com.facebook.app.FacebookContentProvider190897715076966"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>
