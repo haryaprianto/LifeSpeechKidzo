@@ -31,6 +31,7 @@ public class LessonActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_lesson);
         retrieveContent();
         lvLesson = (ListView)findViewById(R.id.listVIewLesson);

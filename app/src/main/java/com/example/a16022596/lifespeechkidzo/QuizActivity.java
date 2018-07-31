@@ -39,8 +39,6 @@ public class QuizActivity extends AppCompatActivity {
     List<Question> list = new ArrayList<>();
 
 
-
-
     private TextView tvScore;   // view for current total score
     private TextView tvQuestion;  //current question to answer
     private Button btnChoice1; // multiple choice 1 for mQuestionView
@@ -54,16 +52,18 @@ public class QuizActivity extends AppCompatActivity {
 
 
 
+
+
     //time
     private CountDownTimer cDtimer;
     private long remainingTime = 60000 * 30;
     private boolean timeRunning;
     private TextView tvTimer;
 
-
+    private int totalq;
     private String correctAnswer;  // correct answer for question in mQuestionView
     private int marks = 0;  // current total score
-    private int questionNumber = 0; // current question number
+    private int questionNumber; // current question number
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +77,10 @@ public class QuizActivity extends AppCompatActivity {
         btnChoice3 = (Button)findViewById(R.id.buttonOption3);
         btnChoice4 = (Button)findViewById(R.id.buttonOption4);
         tvTimer = (TextView)findViewById(R.id.textViewTimer);
+
         retrieveQuestions();
         startTimer();
-        updateScore(marks);
+
 
 
     }
@@ -110,6 +111,7 @@ public class QuizActivity extends AppCompatActivity {
                 try {
                     Log.i("info", response);
                     questionObjectJSON(new String(response));
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -142,7 +144,9 @@ public class QuizActivity extends AppCompatActivity {
                 quizId2 = jsonArray.getJSONObject(i).getInt("quiz_id");
                 questionId = jsonArray.getJSONObject(i).getInt("question_id");
                 list.add(new Question(question,new String[]{option1,option2,option3,option4},option1,imageLink));
+
                 questionList.add(question);
+                updateScore(marks);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -159,8 +163,8 @@ public class QuizActivity extends AppCompatActivity {
             correctAnswer = list.get(questionNumber).getAnswer();
 
             Log.i("Correct Answer",correctAnswer);
-
             Log.i("QuestionNumber",String.valueOf(questionNumber));
+            Log.i("Total list",list.size()+"");
 
         if (!imageLink.isEmpty()){
             Log.d("tag", "questionObjectJSON: "+ list.get(questionNumber).getImage());
@@ -189,12 +193,34 @@ public class QuizActivity extends AppCompatActivity {
                             Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
                         }
                         correctAnswer = list.get(questionNumber).getAnswer();
+//                        if (list.size()==questionNumber){
+//                            Intent i = new Intent(QuizActivity.this,Result.class);
+//                            startActivity(i);
+//                        }
 
                     } else {
                         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
                         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                         mediaPlayer.start();
+                        updateScore(marks);
+                        tvQuestion.setText(list.get(questionNumber).getQuestion());
+                        btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                        btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                        btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                        btnChoice4.setText(list.get(questionNumber).getChoice(3));
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                        correctAnswer = list.get(questionNumber).getAnswer();
+//
                     }
+                if (list.size()-1==totalq){
+                            Intent i = new Intent(QuizActivity.this,Result.class);
+                            startActivity(i);
+                }else {
+                    totalq++;
+                }
             }
         });
         btnChoice2.setOnClickListener(new View.OnClickListener() {
@@ -206,7 +232,7 @@ public class QuizActivity extends AppCompatActivity {
                     mediaPlayer.start();
                     marks++;
                     updateScore(marks);
-                    tvQuestion.setText(list.get(questionNumber).getQuestion());
+                    tvQuestion.setText(list.get(questionNumber).getQuestion()+"");
                     btnChoice1.setText(list.get(questionNumber).getChoice(0));
                     btnChoice2.setText(list.get(questionNumber).getChoice(1));
                     btnChoice3.setText(list.get(questionNumber).getChoice(2));
@@ -216,14 +242,34 @@ public class QuizActivity extends AppCompatActivity {
                         Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
                     }
                     correctAnswer = list.get(questionNumber).getAnswer();
-                    if (questionNumber == (list.size() -1)){
-                        Toast.makeText(QuizActivity.this,"This is the last question",Toast.LENGTH_LONG).show();
-                    }
+//                    if (list.size()==questionNumber){
+//                        Intent i = new Intent(QuizActivity.this,Result.class);
+//                        startActivity(i);
+//                    }
                 }
                 else{
                     mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wrong);
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mediaPlayer.start();
+                    updateScore(marks);
+                    tvQuestion.setText(list.get(questionNumber).getQuestion());
+                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
+
+                    if (!imageLink.isEmpty()) {
+                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                    }
+                    correctAnswer = list.get(questionNumber).getAnswer();
+
+                    }
+                if (list.size()-1==totalq){
+                    Intent i = new Intent(QuizActivity.this,Result.class);
+                    startActivity(i);
+                }else {
+                    totalq++;
                 }
             }
         });
@@ -246,8 +292,10 @@ public class QuizActivity extends AppCompatActivity {
                         Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
                     }
                     correctAnswer = list.get(questionNumber).getAnswer();
-                    if (questionNumber == (list.size() -1)){
-                        Toast.makeText(QuizActivity.this,"This is the last question",Toast.LENGTH_LONG).show();
+
+                    if (!imageLink.isEmpty()) {
+                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
                     }
 
                 }
@@ -255,6 +303,25 @@ public class QuizActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wrong);
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mediaPlayer.start();
+                    updateScore(marks);
+                    tvQuestion.setText(list.get(questionNumber).getQuestion());
+                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
+
+                    if (!imageLink.isEmpty()) {
+                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                    }
+                    correctAnswer = list.get(questionNumber).getAnswer();
+
+                }
+                if (list.size()-1==totalq){
+                    Intent i = new Intent(QuizActivity.this,Result.class);
+                    startActivity(i);
+                }else {
+                    totalq++;
                 }
             }
         });
@@ -277,19 +344,33 @@ public class QuizActivity extends AppCompatActivity {
                         Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
                     }
                     correctAnswer = list.get(questionNumber).getAnswer();
-                    if (questionNumber == (list.size() -1)){
-                        Toast.makeText(QuizActivity.this,"This is the last question",Toast.LENGTH_LONG).show();
-                    }
+
+
                 }
                 else{
                     mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wrong);
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mediaPlayer.start();
+                    updateScore(marks);
+                    tvQuestion.setText(list.get(questionNumber).getQuestion());
+                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
+                    if (!imageLink.isEmpty()) {
+                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                    }
+                    correctAnswer = list.get(questionNumber).getAnswer();
+                }
+                if (list.size()-1==totalq){
+                    Intent i = new Intent(QuizActivity.this,Result.class);
+                    startActivity(i);
+                }else {
+                    totalq++;
                 }
             }
         });
-
-
         return questionList;
     }
 

@@ -10,7 +10,8 @@
     <Spinner
         android:id="@+id/spinnerQuizDifficulty"
         android:layout_width="match_parent"
-        android:layout_height="185dp" />
+        android:layout_height="wrap_content" />
+
 
     <Button
         android:id="@+id/buttonStartQuiz"

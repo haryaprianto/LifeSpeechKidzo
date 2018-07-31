@@ -28,7 +28,7 @@ public class showSubsCat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_subs_cat);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         lvSubsCategory = findViewById(R.id.listViewSubs);
 
         lvSubsCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
