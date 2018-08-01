@@ -44,7 +44,7 @@ public class MediumQuizPage extends AppCompatActivity {
     private boolean timeRunning;
 
     private String correctAnswer;  // correct answer for question in mQuestionView
-    private int marks = 0;  // current total score
+    int marks = 0;  // current total score
     private int questionNumber = 0; // current question number
 
 
@@ -132,8 +132,8 @@ public class MediumQuizPage extends AppCompatActivity {
         if (!imageLink.isEmpty()){
             Log.d("tag", "questionObjectJSON: "+ list.get(questionNumber).getImage());
             Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(imgView);
-
         }
+
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +148,9 @@ public class MediumQuizPage extends AppCompatActivity {
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     mediaPlayer.start();
                     questionNumber++;
+                    updateQuestion();
+
+
                 }
             }
         });
@@ -158,32 +161,74 @@ public class MediumQuizPage extends AppCompatActivity {
     private void updateScore(int point) {
         tvScore.setText("Total Marks: "+marks+"/"+ list.size());
     }
+
+
+
     private void updateQuestion(){
-
-
         Log.i("info","question num "+questionNumber);
         Log.i("info","list size "+list.size());
 
             if (list.size() > questionNumber) {
-                marks++;
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.applause);
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mediaPlayer.start();
+//                marks++;
+//                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.applause);
+//                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//                mediaPlayer.start();
+                if (correctAnswer.equalsIgnoreCase(etAnswer.getText().toString().trim())){
+                    marks=marks+1;
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.applause);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+                    updateScore(marks);
+//                    Toast.makeText(MediumQuizPage.this, "It was the last question", Toast.LENGTH_LONG).show();
+//                    Intent intent = new Intent(getBaseContext(),Result.class);
+                    int correctAnswer = list.size() - marks;
+                    int wrongAnswer = marks;
+//                    intent.putExtra("correct",correctAnswer);
+//                    intent.putExtra("wrong", wrongAnswer);
+//                    startActivity(intent);
+                    Log.i("mark",marks+"");
+                }
+                else{
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+//                    Toast.makeText(MediumQuizPage.this, "It was the last question", Toast.LENGTH_LONG).show();
+//                    Intent intent = new Intent(getBaseContext(),Result.class);
+                    int correctAnswer = list.size() - marks;
+                    int wrongAnswer = marks;
+//                    intent.putExtra("correct",correctAnswer);
+//                    intent.putExtra("wrong", wrongAnswer);
+//                    startActivity(intent);
+                }
                 updateScore(marks);
                 etAnswer.setText("");
                 if (!imageLink.isEmpty()) {
                     Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(imgView);
                 }
+                Log.i("mark",marks+"");
                 correctAnswer = list.get(questionNumber).getAnswer();
             } else {
                 if(ia==-1){
                 }else{
-                    if (correctAnswer.equalsIgnoreCase(etAnswer.getText().toString())){
-                        marks++;
+                    if (correctAnswer.equalsIgnoreCase(etAnswer.getText().toString().trim())){
+                        marks=marks+1;
                         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.applause);
                         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                         mediaPlayer.start();
                         updateScore(marks);
+                        Toast.makeText(MediumQuizPage.this, "It was the last question", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getBaseContext(),Result.class);
+                        int correctAnswerMarks = list.size() - marks;
+                        int wrongAnswermarks = marks;
+                        intent.putExtra("correct",correctAnswerMarks);
+                        intent.putExtra("wrong", wrongAnswermarks);
+                        startActivity(intent);
+//                        Log.i("mark",marks+"");
+                    }
+                    else{
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
+                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                        mediaPlayer.start();
                         Toast.makeText(MediumQuizPage.this, "It was the last question", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getBaseContext(),Result.class);
                         int correctAnswer = list.size() - marks;

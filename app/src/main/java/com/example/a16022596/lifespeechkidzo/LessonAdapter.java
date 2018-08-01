@@ -42,7 +42,7 @@ public class LessonAdapter extends ArrayAdapter<Lesson> {
 
         Lesson currentLesson = lessons.get(position);
         tvLesson.setText(currentLesson.getContentName());
-        String url = currentLesson.getContentImage();
+        String url = "https://fypdmsd.000webhostapp.com/ws/images/"+currentLesson.getContentImage();
 //        Log.i("ttturl",url);
         if (!url.isEmpty()){
 //            Picasso.get().load(url).resize(100,50).into(imgCategory);

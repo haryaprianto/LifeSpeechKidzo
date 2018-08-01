@@ -42,8 +42,8 @@ public class LessonActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View lView, final int pos, long id) {
                 Lesson selectedLesson = lessonList.get(pos);
-                String urlAudio = selectedLesson.getContentAudio();
-//                Log.i("Audio",urlAudio);
+                String urlAudio = "https://fypdmsd.000webhostapp.com/ws/audio/"+selectedLesson.getContentAudio();
+                Log.i("Audio",urlAudio);
                 MediaPlayer mediaPlayer = new MediaPlayer();
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 try {
@@ -67,7 +67,7 @@ public class LessonActivity extends AppCompatActivity {
                                            int index, long arg3) {
 
                 Lesson selectedLesson = lessonList.get(index);
-                String urlSpellAudio = selectedLesson.getAudioSpellLink();
+                String urlSpellAudio =  "https://fypdmsd.000webhostapp.com/ws/spelling/"+selectedLesson.getAudioSpellLink();
                 MediaPlayer mediaPlayer = new MediaPlayer();
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 try {
