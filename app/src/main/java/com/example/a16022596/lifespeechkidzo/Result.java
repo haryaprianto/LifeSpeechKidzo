@@ -202,7 +202,8 @@ public class Result extends AppCompatActivity {
         // Code for step 1 start
         if(!username.equalsIgnoreCase("")){
             HttpRequest request = new HttpRequest
-                    ("http://10.0.2.2/C302_CloudAddressBook/getContacts.php");
+                    ("https://fypdmsd.000webhostapp.com/ws/doUploadScore.php");
+            request.setOnHttpResponseListener(mHttpResponseListener);
             request.setMethod("POST");
             request.addData("username",username);
             request.addData("quiz_id", quiz_id+"");
@@ -211,4 +212,23 @@ public class Result extends AppCompatActivity {
             // Code for step 1 end
         }
     }
+    // Code for step 2 start
+    private HttpRequest.OnHttpResponseListener mHttpResponseListener =
+            new HttpRequest.OnHttpResponseListener() {
+                @Override
+                public void onResponse(String response) {
+
+                    // process response here
+                    try {
+                        Log.i("JSON Results: ", response);
+
+                        JSONObject jsonObj = new JSONObject(response);
+                        Toast.makeText(getApplicationContext(), jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            };
 }

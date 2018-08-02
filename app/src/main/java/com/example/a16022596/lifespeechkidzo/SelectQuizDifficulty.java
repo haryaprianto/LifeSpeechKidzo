@@ -28,6 +28,7 @@ public class SelectQuizDifficulty extends AppCompatActivity {
     Button btnStartQuiz;
     Integer quizId;
     String difflevel;
+    String subCatId2;
 
 
     @Override
@@ -74,7 +75,7 @@ public class SelectQuizDifficulty extends AppCompatActivity {
     }
     private void retrieveDifficultyLevel(){
         Intent IDRecieve = getIntent();
-        String subCatId2 = IDRecieve.getStringExtra("subCatId");
+        subCatId2 = IDRecieve.getStringExtra("subCatId");
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "https://fypandroiddmsd.000webhostapp.com/getSelectedDifficulty.php?subcategory_id=" + subCatId2 + "";
         client.get(url, new AsyncHttpResponseHandler() {
