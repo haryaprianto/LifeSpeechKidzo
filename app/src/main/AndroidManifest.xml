@@ -40,9 +40,11 @@
 
         <activity android:name=".Acc_ProfilePage" />
         <activity android:name=".LessonActivity"
-            android:parentActivityName=".showSubsCat"/>
-        <activity android:name=".SelectQuizDifficulty" />
-        <activity android:name=".QuizActivity" />
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".SelectQuizDifficulty"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".QuizActivity"
+            android:parentActivityName=".MainActivity"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -65,7 +67,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".FacebookUsername" />
-        <activity android:name=".MediumQuizPage" />
+        <activity android:name=".MediumQuizPage"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".Result"></activity>
 
         <provider android:authorities="com.facebook.app.FacebookContentProvider190897715076966"
