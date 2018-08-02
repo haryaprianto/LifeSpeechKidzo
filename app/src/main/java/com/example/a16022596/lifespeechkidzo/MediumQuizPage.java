@@ -37,6 +37,7 @@ public class MediumQuizPage extends AppCompatActivity {
     String imageLink;
     int ia = -1;
     private MediaPlayer mediaPlayer;
+    int quizId;
 
     //time
     private CountDownTimer cDtimer;
@@ -70,7 +71,7 @@ public class MediumQuizPage extends AppCompatActivity {
     }
     private void retrieveQuestions(){
         Intent IDRecieve = getIntent();
-        int quizId = IDRecieve.getIntExtra("selectedQuizId",0);
+        quizId = IDRecieve.getIntExtra("selectedQuizId",0);
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "https://fypandroiddmsd.000webhostapp.com/getQuestionByQuizId.php?quiz_id=" + quizId + "";
         client.get(url, new AsyncHttpResponseHandler() {
@@ -220,6 +221,7 @@ public class MediumQuizPage extends AppCompatActivity {
                         Intent intent = new Intent(getBaseContext(),Result.class);
                         int correctAnswerMarks = list.size() - marks;
                         int wrongAnswermarks = marks;
+                        intent.putExtra("quiz_id",quizId);
                         intent.putExtra("correct",correctAnswerMarks);
                         intent.putExtra("wrong", wrongAnswermarks);
                         startActivity(intent);
@@ -233,6 +235,7 @@ public class MediumQuizPage extends AppCompatActivity {
                         Intent intent = new Intent(getBaseContext(),Result.class);
                         int correctAnswer = list.size() - marks;
                         int wrongAnswer = marks;
+                        intent.putExtra("quiz_id",quizId);
                         intent.putExtra("correct",correctAnswer);
                         intent.putExtra("wrong", wrongAnswer);
                         startActivity(intent);

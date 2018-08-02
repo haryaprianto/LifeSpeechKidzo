@@ -23,9 +23,11 @@ public class SelectQuizDifficulty extends AppCompatActivity {
 
     ArrayList<String>difficultyLevelName = new ArrayList<String>();
     ArrayList<Integer>quizIdList = new ArrayList<Integer>();
+    ArrayList<String>diffList = new ArrayList<String>();
     Spinner spnDifficulty;
     Button btnStartQuiz;
     Integer quizId;
+    String difflevel;
 
 
     @Override
@@ -41,6 +43,7 @@ public class SelectQuizDifficulty extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 quizId = quizIdList.get(position);
+                difflevel = diffList.get(position);
                 Log.i("QUIZID",String.valueOf(quizId));
             }
 
@@ -54,12 +57,12 @@ public class SelectQuizDifficulty extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("SelectedQuizId",String.valueOf(quizId));
-                if (quizId == 6){
+                if (difflevel.equalsIgnoreCase("easy")){
                     Intent intent = new Intent(SelectQuizDifficulty.this, QuizActivity.class);
                     intent.putExtra("selectedQuizId", quizId);
                     startActivity(intent);
                 }
-                else if (quizId == 7){
+                else if (difflevel.equalsIgnoreCase("medium")){
                     Intent intent = new Intent(SelectQuizDifficulty.this, MediumQuizPage.class);
                     intent.putExtra("selectedQuizId", quizId);
                     startActivity(intent);
@@ -115,12 +118,15 @@ public class SelectQuizDifficulty extends AppCompatActivity {
 
             String diffcultyName;
             int quizId;
+            String diff;
             for (int i= 0;i<jsonArray.length();i++){
                 diffcultyName = jsonArray.getJSONObject(i).getString("quiz_name");
                 Log.i("Quiz Name ", diffcultyName);
                 quizId = jsonArray.getJSONObject(i).getInt("quiz_id");
+                diff = jsonArray.getJSONObject(i).getString("difficulty_name");
                 difficultyLevelName.add(diffcultyName);
                 quizIdList.add(quizId);
+                diffList.add(diff);
             }
         }catch (Exception e){
             e.printStackTrace();
