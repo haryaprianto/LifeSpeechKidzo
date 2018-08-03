@@ -30,20 +30,14 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class Result extends AppCompatActivity {
     private  String tag = "Result";
     PieChart pcResult;
 
-    int quiz_id;
-    String username;
-    int correct;
     //Facebook
-    private Button fbshare;
+    private Button fbshare,homebtn;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
@@ -82,12 +76,12 @@ public class Result extends AppCompatActivity {
 
 
         Intent intRecieved = getIntent();
-        correct = intRecieved.getIntExtra("correct",0);
+        int correct = intRecieved.getIntExtra("correct",0);
         int wrong = intRecieved.getIntExtra("wrong",0);
-        quiz_id = intRecieved.getIntExtra("quiz_id",0);
+        Log.i("WrongMarks",wrong + "");
+        Log.i("CorrectAnswer",correct +"");
 
 
-        Log.i("quiz_id",quiz_id+"");
 
         final double doublecorrect = correct+0.0;
         final double doublewrong = wrong+0.0;
@@ -112,8 +106,8 @@ public class Result extends AppCompatActivity {
         pcResult.setCenterTextSize(20f);
         ArrayList<PieEntry> yValues = new ArrayList<>();
 
-        yValues.add(new PieEntry(correct,"Wrong"));
         yValues.add(new PieEntry(wrong,"Correct"));
+        yValues.add(new PieEntry(correct,"Wrong"));
 
 
         PieDataSet dataSet = new PieDataSet(yValues,"Result");
@@ -130,19 +124,40 @@ public class Result extends AppCompatActivity {
 
 
 
-        //Facebook
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Facebook
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         fbshare = (Button)findViewById(R.id.facebookShare);
-
+        homebtn = (Button)findViewById(R.id.homebtn);
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
-
+        homebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Result.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(Result.this);
         String type = prefs.getString("AccountType","unknown");
-        username = prefs.getString("LoginUsername","");
-        Log.i("user_name",username);
         Log.i(tag+"145",type);
         if(type.toString().trim().equals("normal")){
             fbshare.setVisibility(View.INVISIBLE);
@@ -175,13 +190,13 @@ public class Result extends AppCompatActivity {
                         Picasso.get()
                                 .load("https://fypdmsd.000webhostapp.com/ws/images/ShareExecellent.png")
                                 .into(target);
-                    }else if(doublewrong>average){
+                    }else if(doublewrong>=average){
                         Picasso.get()
                                 .load("https://fypdmsd.000webhostapp.com/ws/images/ShareWellDone.png")
                                 .into(target);
                     }else{
                         Picasso.get()
-                                .load("https://fypdmsd.000webhostapp.com/ws/images/ShareWorkHarder.png")
+                                .load("https://fypdmsd.000webhostapp.com/ws/images/ShareWorkharder.png")
                                 .into(target);
                     }
 
@@ -191,44 +206,5 @@ public class Result extends AppCompatActivity {
 
         }
 //        Facebook
-
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
-        // Code for step 1 start
-        if(!username.equalsIgnoreCase("")){
-            HttpRequest request = new HttpRequest
-                    ("https://fypdmsd.000webhostapp.com/ws/doUploadScore.php");
-            request.setOnHttpResponseListener(mHttpResponseListener);
-            request.setMethod("POST");
-            request.addData("username",username);
-            request.addData("quiz_id", quiz_id+"");
-            request.addData("marks", correct+"");
-            request.execute();
-            // Code for step 1 end
-        }
-    }
-    // Code for step 2 start
-    private HttpRequest.OnHttpResponseListener mHttpResponseListener =
-            new HttpRequest.OnHttpResponseListener() {
-                @Override
-                public void onResponse(String response) {
-
-                    // process response here
-                    try {
-                        Log.i("JSON Results: ", response);
-
-                        JSONObject jsonObj = new JSONObject(response);
-                        Toast.makeText(getApplicationContext(), jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            };
 }

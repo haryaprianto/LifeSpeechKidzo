@@ -51,9 +51,6 @@ public class QuizActivity extends AppCompatActivity {
     private String imageLink;
 
 
-
-
-
     //time
     private CountDownTimer cDtimer;
     private long remainingTime = 60000 * 30;
@@ -68,6 +65,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tvScore = (TextView)findViewById(R.id.textViewScore);
         tvQuestion = (TextView)findViewById(R.id.textViewQuestion);
         img = (ImageView)findViewById(R.id.imageView2);
@@ -77,6 +75,7 @@ public class QuizActivity extends AppCompatActivity {
         btnChoice3 = (Button)findViewById(R.id.buttonOption3);
         btnChoice4 = (Button)findViewById(R.id.buttonOption4);
         tvTimer = (TextView)findViewById(R.id.textViewTimer);
+
         retrieveQuestions();
         startTimer();
 
@@ -110,7 +109,6 @@ public class QuizActivity extends AppCompatActivity {
                 try {
                     Log.i("info", response);
                     questionObjectJSON(new String(response));
-                    updateQuestion();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -159,265 +157,261 @@ public class QuizActivity extends AppCompatActivity {
         btnChoice2.setText(list.get(questionNumber).getChoice(1));
         btnChoice3.setText(list.get(questionNumber).getChoice(2));
         btnChoice4.setText(list.get(questionNumber).getChoice(3));
+
         correctAnswer = list.get(questionNumber).getAnswer();
-        Log.i("Correct Answer",correctAnswer);
-        Log.i("QuestionNumber",String.valueOf(questionNumber));
-        Log.i("Total list",list.size()+"");
+
+        Log.i("Correct Answer163",correctAnswer);
+        Log.i("QuestionNumber164",String.valueOf(questionNumber));
+        Log.i("Total list165",list.size()+"");
 
         if (!imageLink.isEmpty()){
             Log.d("tag", "questionObjectJSON: "+ list.get(questionNumber).getImage());
             Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
         }
-        questionNumber++;
-        updateQuestion();
-        return questionList;
+//        questionNumber++;
 
-    }
 
-    public void updateQuestion() {
-        if(questionNumber < list.size()){
-            // set the text for new question,
-            // and new 4 alternative to answer on four buttons
-            tvQuestion.setText(list.get(questionNumber).getQuestion());
-            btnChoice1.setText(list.get(questionNumber).getChoice(0));
-            btnChoice2.setText(list.get(questionNumber).getChoice(1));
-            btnChoice3.setText(list.get(questionNumber).getChoice(2));
-            btnChoice4.setText(list.get(questionNumber).getChoice(3));
-            correctAnswer = list.get(questionNumber).getAnswer();
-            if (!imageLink.isEmpty()){
-                Log.d("tag", "questionObjectJSON: "+ list.get(questionNumber).getImage());
-                Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+        Log.i("QuestionNumber164",String.valueOf(questionNumber));
+
+        btnChoice1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                questionNumber++;
+                if (btnChoice1.getText().toString().equalsIgnoreCase(correctAnswer)) {
+
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.applause);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+                    marks++;
+                    updateScore(marks);
+                    if (questionNumber < list.size()) {
+                        tvQuestion.setText(list.get(questionNumber).getQuestion());
+                        btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                        btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                        btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                        btnChoice4.setText(list.get(questionNumber).getChoice(3));
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                        correctAnswer = list.get(questionNumber).getAnswer();
+
+//                        if (list.size()==questionNumber){
+//                            Intent i = new Intent(QuizActivity.this,Result.class);
+//                            startActivity(i);
+//                        }
+                    }
+                } else {
+
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+                    updateScore(marks);
+                    if (questionNumber < list.size()) {
+                        tvQuestion.setText(list.get(questionNumber).getQuestion());
+                        btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                        btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                        btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                        btnChoice4.setText(list.get(questionNumber).getChoice(3));
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                        correctAnswer = list.get(questionNumber).getAnswer();
+                    }
+                }
+                if (list.size()-1==totalq){
+                    Intent i = new Intent(QuizActivity.this,Result.class);
+                    int correctAnswer = list.size() - marks;
+                    int wrongAnswer = marks;
+                    i.putExtra("correct",correctAnswer);
+                    i.putExtra("wrong", wrongAnswer);
+                    startActivity(i);
+                }else {
+                    totalq++;
+
+                }
             }
-            questionNumber++;
-        }
-        else {
-            Toast.makeText(QuizActivity.this, "It was the last question!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getBaseContext(),Result.class);
-            int correctAnswer = list.size() - marks;
-            int wrongAnswer = marks;
-            intent.putExtra("correct",correctAnswer);
-            intent.putExtra("wrong", wrongAnswer);
-            startActivity(intent);
-        }
+        });
+
+        btnChoice2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                questionNumber++;
+                if (btnChoice2.getText().toString().equalsIgnoreCase(correctAnswer)){
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.applause);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+                    marks++;
+                    updateScore(marks);
+                    if (questionNumber < list.size()) {
+                        tvQuestion.setText(list.get(questionNumber).getQuestion() + "");
+                        btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                        btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                        btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                        btnChoice4.setText(list.get(questionNumber).getChoice(3));
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                        correctAnswer = list.get(questionNumber).getAnswer();
+//                    if (list.size()==questionNumber){
+//                        Intent i = new Intent(QuizActivity.this,Result.class);
+//                        startActivity(i);
+//                    }
+                    }
+                }
+                else{
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wrong);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+                    updateScore(marks);
+                    if (questionNumber < list.size()) {
+                        tvQuestion.setText(list.get(questionNumber).getQuestion());
+                        btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                        btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                        btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                        btnChoice4.setText(list.get(questionNumber).getChoice(3));
+
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                        correctAnswer = list.get(questionNumber).getAnswer();
+                    }
+                }
+                if (list.size()-1==totalq){
+                    Intent i = new Intent(QuizActivity.this,Result.class);
+                    int correctAnswer = list.size() - marks;
+                    int wrongAnswer = marks;
+                    i.putExtra("correct",correctAnswer);
+                    i.putExtra("wrong", wrongAnswer);
+                    startActivity(i);
+                }else {
+                    totalq++;
+                }
+            }
+        });
+        btnChoice3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                questionNumber++;
+                if (btnChoice3.getText().toString().equalsIgnoreCase(correctAnswer)){
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.applause);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+                    marks++;
+                    updateScore(marks);
+                    if (questionNumber < list.size()) {
+                        tvQuestion.setText(list.get(questionNumber).getQuestion());
+                        btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                        btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                        btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                        btnChoice4.setText(list.get(questionNumber).getChoice(3));
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                        correctAnswer = list.get(questionNumber).getAnswer();
+
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                    }
+                }
+                else{
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wrong);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+                    updateScore(marks);
+                    if (questionNumber < list.size()) {
+                        tvQuestion.setText(list.get(questionNumber).getQuestion());
+                        btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                        btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                        btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                        btnChoice4.setText(list.get(questionNumber).getChoice(3));
+
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                        correctAnswer = list.get(questionNumber).getAnswer();
+                    }
+                }
+                if (list.size()-1==totalq){
+                    Intent i = new Intent(QuizActivity.this,Result.class);
+                    int correctAnswer = list.size() - marks;
+                    int wrongAnswer = marks;
+                    i.putExtra("correct",correctAnswer);
+                    i.putExtra("wrong", wrongAnswer);
+                    startActivity(i);
+                }else {
+                    totalq++;
+                }
+            }
+        });
+        btnChoice4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                questionNumber++;
+                if (btnChoice3.getText().toString().equalsIgnoreCase(correctAnswer)){
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.applause);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+                    marks++;
+                    updateScore(marks);
+                    if (questionNumber < list.size()) {
+                        tvQuestion.setText(list.get(questionNumber).getQuestion());
+                        btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                        btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                        btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                        btnChoice4.setText(list.get(questionNumber).getChoice(3));
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                        correctAnswer = list.get(questionNumber).getAnswer();
+
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                    }
+                }
+                else{
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wrong);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.start();
+                    updateScore(marks);
+                    if (questionNumber < list.size()) {
+                        tvQuestion.setText(list.get(questionNumber).getQuestion());
+                        btnChoice1.setText(list.get(questionNumber).getChoice(0));
+                        btnChoice2.setText(list.get(questionNumber).getChoice(1));
+                        btnChoice3.setText(list.get(questionNumber).getChoice(2));
+                        btnChoice4.setText(list.get(questionNumber).getChoice(3));
+
+                        if (!imageLink.isEmpty()) {
+                            Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
+                            Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
+                        }
+                        correctAnswer = list.get(questionNumber).getAnswer();
+                    }
+                }
+                if (list.size()-1==totalq){
+                    Intent i = new Intent(QuizActivity.this,Result.class);
+                    int correctAnswer = list.size() - marks;
+                    int wrongAnswer = marks;
+                    i.putExtra("correct",correctAnswer);
+                    i.putExtra("wrong", wrongAnswer);
+                    startActivity(i);
+                }else {
+                    totalq++;
+                }
+            }
+        });
+        return questionList;
     }
-
-
-
-//        btnChoice1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (btnChoice1.getText().toString().equalsIgnoreCase(correctAnswer)) {
-//                    mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.applause);
-//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                    mediaPlayer.start();
-//                    marks++;
-//                    updateScore(marks);
-//                    tvQuestion.setText(list.get(questionNumber).getQuestion());
-//                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
-//                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
-//                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
-//                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
-//                    if (!imageLink.isEmpty()) {
-//                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
-//                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
-//                    }
-//                    correctAnswer = list.get(questionNumber).getAnswer();
-////                        if (list.size()==questionNumber){
-////                            Intent i = new Intent(QuizActivity.this,Result.class);
-////                            startActivity(i);
-////                        }
-//
-//                } else {
-//                    mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
-//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                    mediaPlayer.start();
-//                    updateScore(marks);
-//                    tvQuestion.setText(list.get(questionNumber).getQuestion());
-//                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
-//                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
-//                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
-//                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
-//                    if (!imageLink.isEmpty()) {
-//                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
-//                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
-//                    }
-//                    correctAnswer = list.get(questionNumber).getAnswer();
-////
-//                }
-//                if (list.size()-1==totalq){
-//                    Intent i = new Intent(QuizActivity.this,Result.class);
-//                    int correctAnswer = list.size() - marks;
-//                    int wrongAnswer = marks;
-//                    i.putExtra("correct",correctAnswer);
-//                    i.putExtra("wrong", wrongAnswer);
-//                    startActivity(i);
-//                }else {
-//                    totalq++;
-//                }
-//            }
-//        });
-//        btnChoice2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (btnChoice2.getText().toString().equalsIgnoreCase(correctAnswer)){
-//                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.applause);
-//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                    mediaPlayer.start();
-//                    marks++;
-//                    updateScore(marks);
-//                    tvQuestion.setText(list.get(questionNumber).getQuestion()+"");
-//                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
-//                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
-//                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
-//                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
-//                    if (!imageLink.isEmpty()){
-//                        Log.d("tag", "questionObjectJSON: "+ list.get(questionNumber).getImage());
-//                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
-//                    }
-//                    correctAnswer = list.get(questionNumber).getAnswer();
-////                    if (list.size()==questionNumber){
-////                        Intent i = new Intent(QuizActivity.this,Result.class);
-////                        startActivity(i);
-////                    }
-//                }
-//                else{
-//                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wrong);
-//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                    mediaPlayer.start();
-//                    updateScore(marks);
-//                    tvQuestion.setText(list.get(questionNumber).getQuestion());
-//                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
-//                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
-//                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
-//                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
-//
-//                    if (!imageLink.isEmpty()) {
-//                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
-//                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
-//                    }
-//                    correctAnswer = list.get(questionNumber).getAnswer();
-//
-//                }
-//                if (list.size()-1==totalq){
-//                    Intent i = new Intent(QuizActivity.this,Result.class);
-//                    int correctAnswer = list.size() - marks;
-//                    int wrongAnswer = marks;
-//                    i.putExtra("correct",correctAnswer);
-//                    i.putExtra("wrong", wrongAnswer);
-//                    startActivity(i);
-//                }else {
-//                    totalq++;
-//                }
-//            }
-//        });
-//        btnChoice3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (btnChoice3.getText().toString().equalsIgnoreCase(correctAnswer)){
-//                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.applause);
-//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                    mediaPlayer.start();
-//                    marks++;
-//                    updateScore(marks);
-//                    tvQuestion.setText(list.get(questionNumber).getQuestion());
-//                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
-//                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
-//                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
-//                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
-//                    if (!imageLink.isEmpty()){
-//                        Log.d("tag", "questionObjectJSON: "+ list.get(questionNumber).getImage());
-//                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
-//                    }
-//                    correctAnswer = list.get(questionNumber).getAnswer();
-//
-//                    if (!imageLink.isEmpty()) {
-//                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
-//                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
-//                    }
-//
-//                }
-//                else{
-//                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wrong);
-//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                    mediaPlayer.start();
-//                    updateScore(marks);
-//                    tvQuestion.setText(list.get(questionNumber).getQuestion());
-//                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
-//                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
-//                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
-//                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
-//
-//                    if (!imageLink.isEmpty()) {
-//                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
-//                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
-//                    }
-//                    correctAnswer = list.get(questionNumber).getAnswer();
-//
-//                }
-//                if (list.size()-1==totalq){
-//                    Intent i = new Intent(QuizActivity.this,Result.class);
-//                    int correctAnswer = list.size() - marks;
-//                    int wrongAnswer = marks;
-//                    i.putExtra("correct",correctAnswer);
-//                    i.putExtra("wrong", wrongAnswer);
-//                    startActivity(i);
-//                }else {
-//                    totalq++;
-//                }
-//            }
-//        });
-//        btnChoice4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (btnChoice4.getText().toString().equalsIgnoreCase(correctAnswer)){
-//                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.applause);
-//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                    mediaPlayer.start();
-//                    marks++;
-//                    updateScore(marks);
-//                    tvQuestion.setText(list.get(questionNumber).getQuestion());
-//                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
-//                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
-//                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
-//                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
-//                    if (!imageLink.isEmpty()){
-//                        Log.d("tag", "questionObjectJSON: "+ list.get(questionNumber).getImage());
-//                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
-//                    }
-//                    correctAnswer = list.get(questionNumber).getAnswer();
-//
-//
-//                }
-//                else{
-//                    mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.wrong);
-//                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                    mediaPlayer.start();
-//                    updateScore(marks);
-//                    tvQuestion.setText(list.get(questionNumber).getQuestion());
-//                    btnChoice1.setText(list.get(questionNumber).getChoice(0));
-//                    btnChoice2.setText(list.get(questionNumber).getChoice(1));
-//                    btnChoice3.setText(list.get(questionNumber).getChoice(2));
-//                    btnChoice4.setText(list.get(questionNumber).getChoice(3));
-//                    if (!imageLink.isEmpty()) {
-//                        Log.d("tag", "questionObjectJSON: " + list.get(questionNumber).getImage());
-//                        Picasso.get().load(list.get(questionNumber).getImage()).fit().centerCrop().into(img);
-//                    }
-//                    correctAnswer = list.get(questionNumber).getAnswer();
-//                }
-//                if (list.size()-1==totalq){
-//                    Intent i = new Intent(QuizActivity.this,Result.class);
-//                    int correctAnswer = list.size() - marks;
-//                    int wrongAnswer = marks;
-//                    i.putExtra("correct",correctAnswer);
-//                    i.putExtra("wrong", wrongAnswer);
-//                    startActivity(i);
-//                }else {
-//                    totalq++;
-//                }
-//            }
-//        });
-//
-//    }
 
     private void updateScore(int point) {
         tvScore.setText("Total Marks: "+marks+"/"+ list.size());
